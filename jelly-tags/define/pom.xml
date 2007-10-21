@@ -64,4 +64,11 @@
       </resource>
     </resources>
   </build>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>local-repository</id>
+      <url>file:${path-to-m2-repo.java.net}</url>
+    </repository>
+  </distributionManagement>
 </project>
