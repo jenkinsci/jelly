@@ -18,24 +18,24 @@
     <j:set var="result.true">
       <j:choose>
         <j:when test="${1 == 1}">
-          A
+          <j:whitespace>A</j:whitespace>
         </j:when>
         <j:otherwise>
-          B
+          <j:whitespace>B</j:whitespace>
         </j:otherwise>
-        C        
+        <j:whitespace>C</j:whitespace>
       </j:choose>
     </j:set>
     
     <j:set var="result.false">
       <j:choose>
         <j:when test="${0 == 1}">
-          A
+          <j:whitespace>A</j:whitespace>
         </j:when>
         <j:otherwise>
-          B
+          <j:whitespace>B</j:whitespace>        
         </j:otherwise>
-        C        
+        <j:whitespace>C</j:whitespace>
       </j:choose>
     </j:set>
     
