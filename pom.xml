@@ -157,47 +157,11 @@
       <optional>true</optional>
     </dependency>
   </dependencies>
-  <reporting>
-    <plugins>
-      <plugin>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <configuration>
-          <rulesets>
-            <ruleset>/rulesets/basic.xml</ruleset>
-            <ruleset>/rulesets/unusedcode.xml</ruleset>
-            <ruleset>/rulesets/imports.xml</ruleset>
-            <ruleset>/rulesets/codesize.xml</ruleset>
-            <ruleset>/rulesets/coupling.xml</ruleset>
-            <ruleset>/rulesets/design.xml</ruleset>
-            <ruleset>/rulesets/strings.xml</ruleset>
-          </rulesets>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-changes-plugin</artifactId>
-        <configuration>
-          <issueLinkTemplate>http://issues.apache.org/jira/browse/%ISSUE%</issueLinkTemplate>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <configLocation>jelly-tags/tag-checkstyle.xml</configLocation>
-          <headerLocation>${basedir}/short-license.txt</headerLocation>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
   <distributionManagement>
     <repository>
-      <id>default</id>
-      <name>Default Repository</name>
-      <url>cvs.apache.org//www/jakarta.apache.org/builds/jakarta-commons/${pom.artifactId.substring(8)}/</url>
+      <uniqueVersion>false</uniqueVersion>
+      <id>local-repository</id>
+      <url>file:${path-to-m2-repo.java.net}</url>
     </repository>
-    <site>
-      <id>default</id>
-      <name>Default Site</name>
-      <url>scp://cvs.apache.org//www/jakarta.apache.org/commons/${pom.artifactId.substring(8)}/</url>
-    </site>
   </distributionManagement>
 </project>
