@@ -49,13 +49,13 @@ public class CompositeTextScriptBlock extends ScriptBlock {
             Script script = (Script) list.get(0);
             if ( script instanceof TextScript ) {
                 TextScript textScript = (TextScript) script;
-                textScript.trimStartWhitespace();
+                textScript.trimWhitespace();
             }
             if ( size > 1 ) {
                 script = (Script) list.get(size - 1);
                 if ( script instanceof TextScript ) {
                     TextScript textScript = (TextScript) script;
-                    textScript.trimEndWhitespace();
+                    textScript.trimWhitespace();
                 }
             }
         }

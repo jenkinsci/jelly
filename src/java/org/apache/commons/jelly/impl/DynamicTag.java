@@ -62,6 +62,7 @@ public class DynamicTag extends DynaTagSupport {
             log.debug("Invoking dynamic tag with attributes: " + attributes);
         }
         attributes.put("org.apache.commons.jelly.body", getBody());
+        attributes.put("org.apache.commons.jelly.body.scope", context);
 
         // create new context based on current attributes
         JellyContext newJellyContext = context.newJellyContext(attributes);

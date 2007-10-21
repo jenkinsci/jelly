@@ -123,6 +123,9 @@ public class JellyServlet extends HttpServlet {
         if (scriptUrl == null) {
             scriptUrl = req.getPathInfo();
         }
+        if (scriptUrl == null) {
+            scriptUrl = req.getServletPath();
+        }
         URL url = getServletContext().getResource(scriptUrl);
         if (url == null) {
             throw new IllegalArgumentException("Invalid script url:" + scriptUrl);

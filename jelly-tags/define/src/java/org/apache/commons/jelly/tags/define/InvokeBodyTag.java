@@ -20,6 +20,7 @@ import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.Tag;
 import org.apache.commons.jelly.TagSupport;
 import org.apache.commons.jelly.XMLOutput;
+import org.apache.commons.jelly.JellyContext;
 import org.apache.commons.jelly.impl.DynamicTag;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,10 +44,54 @@ public class InvokeBodyTag extends TagSupport {
     // Tag interface
     //-------------------------------------------------------------------------
     public void doTag(XMLOutput output) throws JellyTagException {
-        // Try find find the body from the reserved 'org.apache.commons.jelly.body' variable
-        Script script = (Script) context.getVariable("org.apache.commons.jelly.body");
+        /* Try find find the body from the reserved 'org.apache.commons.jelly.body' variable.
+
+            But while doing os,
+            Consider a doubly nested <invokeBody/> invocations like the following sequence,
+            where tag A and B are DynamicTag:
+
+            <A>
+              <X/>
+            </A>
+
+            where A is defined as ...
+
+            <B>
+              <Y>
+                <define:invokeBody/>
+              </Y>
+            </B>
+
+            where B is defined as ...
+
+            <Z>
+              <define:invokeBody/>
+            </Z>
+
+            For this to correctly expands to <Z><Y><X/></Y></Z>,
+            We need to find the <X/> as the body when we are executing <define:invokeBody/> inside <Y> tag.
+            To do this, body Tags (to be invoked) need to be maintained as a stack, and when <invokeBody/>
+            is invoked inside <Z>, we need to 'pop' the body so that the proper body (<X/>) will become
+            visible.
+        */
+
+        JellyContext c = context;
+        Script script = null;
+        while (c!=null) {
+            script = (Script) c.getVariables().get("org.apache.commons.jelly.body");
+            if(script!=null)    break;
+            c = c.getParent();
+        }
+
         if (script != null) {
-            script.run(context, output);
+            // pop the top most body from the virtual '<invokeBody/> stack'
+            // this is necessary to make tha nested invocations work. see above.
+            c.removeVariable("org.apache.commons.jelly.body");
+            try {
+                script.run(context, output);
+            } finally {
+                c.setVariable("org.apache.commons.jelly.body",script);
+            }
         }
         else {
             // note this mechanism does not work properly for arbitrarily

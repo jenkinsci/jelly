@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.jelly.parser.XMLParser;
 import org.apache.commons.jelly.util.ClassLoaderUtils;
@@ -76,7 +77,7 @@ public class JellyContext {
     private Map taglibs = new Hashtable();
 
     /** synchronized access to the variables in scope */
-    private Map variables = new Hashtable();
+    private Map variables = new HashMap();
 
     /** The parent context */
     private JellyContext parent;
@@ -284,12 +285,7 @@ public class JellyContext {
             getParent().setVariable( name, value );
             return;
         }
-        if (value == null) {
-            variables.remove(name);
-        }
-        else {
-            variables.put(name, value);
-        }
+        variables.put(name, value);
     }
 
     /**

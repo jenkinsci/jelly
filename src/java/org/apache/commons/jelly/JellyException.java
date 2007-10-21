@@ -19,7 +19,7 @@ package org.apache.commons.jelly;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-/** 
+/**
  * <p><code>JellyException</code> is the root of all Jelly exceptions.</p>
  *
  * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
@@ -27,7 +27,7 @@ import java.io.PrintWriter;
  */
 
 public class JellyException extends Exception implements LocationAware {
-    
+
     /** the underlying cause of the exception */
     private Throwable cause;
 
@@ -39,10 +39,10 @@ public class JellyException extends Exception implements LocationAware {
 
     /** the line number in the script of the error */
     private int lineNumber = -1;
-    
+
     /** the column number in the script of the error */
     private int columnNumber = -1;
-    
+
     public JellyException() {
     }
 
@@ -54,16 +54,16 @@ public class JellyException extends Exception implements LocationAware {
         super(message);
         this.cause = cause;
     }
-    
+
     public JellyException(Throwable cause) {
         super(cause.getLocalizedMessage());
         this.cause = cause;
     }
-    
+
     public JellyException(Throwable cause, String fileName, String elementName, int columnNumber, int lineNumber) {
         this(cause.getLocalizedMessage(), cause, fileName, elementName, columnNumber, lineNumber);
     }
-    
+
     public JellyException(String reason, Throwable cause, String fileName, String elementName, int columnNumber, int lineNumber) {
         super( (reason==null?cause.getClass().getName():reason) );
         this.cause = cause;
@@ -72,7 +72,7 @@ public class JellyException extends Exception implements LocationAware {
         this.columnNumber = columnNumber;
         this.lineNumber = lineNumber;
     }
-    
+
     public JellyException(String reason, String fileName, String elementName, int columnNumber, int lineNumber) {
         super(reason);
         this.fileName = fileName;
@@ -80,70 +80,70 @@ public class JellyException extends Exception implements LocationAware {
         this.columnNumber = columnNumber;
         this.lineNumber = lineNumber;
     }
-    
+
     public Throwable getCause() {
         return cause;
     }
 
-    
-    /** 
+
+    /**
      * @return the line number of the tag 
      */
     public int getLineNumber() {
         return lineNumber;
     }
-    
-    /** 
+
+    /**
      * Sets the line number of the tag 
      */
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
 
-    /** 
+    /**
      * @return the column number of the tag 
      */
     public int getColumnNumber() {
         return columnNumber;
     }
-    
-    /** 
+
+    /**
      * Sets the column number of the tag 
      */
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
 
-    /** 
+    /**
      * @return the Jelly file which caused the problem 
      */
     public String getFileName() {
         return fileName;
     }
 
-    /** 
+    /**
      * Sets the Jelly file which caused the problem 
      */
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-    
 
-    /** 
+
+    /**
      * @return the element name which caused the problem
      */
     public String getElementName() {
         return elementName;
     }
 
-    /** 
+    /**
      * Sets the element name which caused the problem
      */
     public void setElementName(String elementName) {
         this.elementName = elementName;
     }
-    
-    
+
+
     public String getMessage() {
         if (fileName == null && lineNumber == -1 && columnNumber == -1 && elementName == null) {
             return getReason();
@@ -157,20 +157,20 @@ public class JellyException extends Exception implements LocationAware {
     }
 
     // #### overload the printStackTrace methods...
-    public void printStackTrace(PrintWriter s) { 
+    public void printStackTrace(PrintWriter s) {
         synchronized (s) {
             super.printStackTrace(s);
-            if  (cause != null) {
+            if  (cause != null && !isChainingSupported()) {
                 s.println("Root cause");
                 cause.printStackTrace(s);
             }
         }
     }
-        
+
     public void printStackTrace(PrintStream s) {
         synchronized (s) {
             super.printStackTrace(s);
-            if  (cause != null) {
+            if  (cause != null && !isChainingSupported()) {
                 s.println("Root cause");
                 cause.printStackTrace(s);
             }
@@ -179,10 +179,20 @@ public class JellyException extends Exception implements LocationAware {
 
     public void printStackTrace() {
         super.printStackTrace();
-        if (cause != null) {
+        if (cause != null && !isChainingSupported()) {
             System.out.println("Root cause");
             cause.printStackTrace();
         }
     }
 
+    private boolean isChainingSupported() {
+        try {
+            Throwable.class.getMethod("getCause", new Class[0]);
+            return true;
+        } catch (NoSuchMethodException e) {
+            return false;
+        } catch (SecurityException e) {
+            return false;
+        }
+    }
 }

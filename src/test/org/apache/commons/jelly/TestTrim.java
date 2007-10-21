@@ -46,49 +46,15 @@ public class TestTrim extends TestCase {
         TextScript script = new TextScript( "   foo    " );
         script.trimWhitespace();
 
-        assertEquals( "foo", script.getText() );
+        assertEquals( "   foo    ", script.getText() );
 
         script = new TextScript( " foo " );
         script.trimWhitespace();
 
-        assertEquals( "foo", script.getText() );
+        assertEquals( " foo ", script.getText() );
 
         script = new TextScript( "foo" );
         script.trimWhitespace();
-
-        assertEquals( "foo", script.getText() );
-    }
-
-    public void testTrimStart() throws Exception {
-        TextScript script = new TextScript( "   foo    " );
-        script.trimStartWhitespace();
-
-        assertEquals( "foo    ", script.getText() );
-
-        script = new TextScript( " foo " );
-        script.trimStartWhitespace();
-
-        assertEquals( "foo ", script.getText() );
-
-        script = new TextScript( "foo" );
-        script.trimStartWhitespace();
-
-        assertEquals( "foo", script.getText() );
-    }
-
-    public void testTrimEnd() throws Exception {
-        TextScript script = new TextScript( "   foo    " );
-        script.trimEndWhitespace();
-
-        assertEquals( "   foo", script.getText() );
-
-        script = new TextScript( " foo " );
-        script.trimEndWhitespace();
-
-        assertEquals( " foo", script.getText() );
-
-        script = new TextScript( "foo" );
-        script.trimEndWhitespace();
 
         assertEquals( "foo", script.getText() );
     }

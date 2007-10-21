@@ -44,43 +44,11 @@ public class TextScript implements Script {
     }
 
     /**
-     * Trims whitespace from the start and end of the text in this script
+     * Trims whitespace if this is ignorable whitespace.
      */
     public void trimWhitespace() {
-        this.text = text.trim();
-    }
-
-    /**
-     * Trims whitespace from the start of the text
-     */
-    public void trimStartWhitespace() {
-        int index = 0;
-        for ( int length = text.length(); index < length; index++ ) {
-            char ch = text.charAt(index);
-            if (!Character.isWhitespace(ch)) {
-                break;
-            }
-        }
-        if ( index > 0 ) {
-            this.text = text.substring(index);
-        }
-    }
-
-    /**
-     * Trims whitespace from the end of the text
-     */
-    public void trimEndWhitespace() {
-        int index = text.length();
-        while (--index >= 0) {
-            char ch = text.charAt(index);
-            if (!Character.isWhitespace(ch)) {
-                break;
-            }
-        }
-        index++;
-        if ( index < text.length() ) {
-            this.text = text.substring(0,index);
-        }
+        if(text.trim().length()==0)
+            this.text = "";
     }
 
     /** @return the text output by this script */

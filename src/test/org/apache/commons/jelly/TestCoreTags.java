@@ -70,42 +70,19 @@ public class TestCoreTags extends TestCase {
         assertEquals("Produces the correct output", "one two three", text);
     }
 
-    public void testTrimEndWhitespace() throws Exception {
+    public void testTrimWhitespace() throws Exception {
         TextScript textScript = new TextScript(" ");
-        textScript.trimEndWhitespace();
+        textScript.trimWhitespace();
         assertEquals("", textScript.getText());
 
         textScript = new TextScript("");
-        textScript.trimEndWhitespace();
+        textScript.trimWhitespace();
         assertEquals("", textScript.getText());
 
         textScript = new TextScript(" foo ");
-        textScript.trimEndWhitespace();
-        assertEquals(" foo", textScript.getText());
-
-        textScript = new TextScript("foo");
-        textScript.trimEndWhitespace();
-        assertEquals("foo", textScript.getText());
+        textScript.trimWhitespace();
+        assertEquals(" foo ", textScript.getText());
     }
-
-    public void testTrimStartWhitespace() throws Exception {
-        TextScript textScript = new TextScript(" ");
-        textScript.trimStartWhitespace();
-        assertEquals("", textScript.getText());
-
-        textScript = new TextScript("");
-        textScript.trimStartWhitespace();
-        assertEquals("", textScript.getText());
-
-        textScript = new TextScript(" foo ");
-        textScript.trimStartWhitespace();
-        assertEquals("foo ", textScript.getText());
-
-        textScript = new TextScript("foo");
-        textScript.trimStartWhitespace();
-        assertEquals("foo", textScript.getText());
-    }
-
 
     public void testStaticNamespacedAttributes() throws Exception {
         InputStream in = new FileInputStream("src/test/org/apache/commons/jelly/testStaticNamespacedAttributes.jelly");

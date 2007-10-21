@@ -46,6 +46,7 @@ import org.apache.commons.jelly.impl.TagFactory;
 import org.apache.commons.jelly.impl.TagScript;
 import org.apache.commons.jelly.impl.TextScript;
 import org.apache.commons.jelly.util.ClassLoaderUtils;
+import org.apache.commons.jelly.util.SAXParseException;
 import org.apache.commons.jelly.expression.CompositeExpression;
 import org.apache.commons.jelly.expression.ConstantExpression;
 import org.apache.commons.jelly.expression.Expression;
@@ -61,7 +62,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.AttributesImpl;
 
@@ -494,6 +494,10 @@ public class XMLParser extends DefaultHandler {
     public synchronized XMLReader getXMLReader() throws SAXException {
         if (reader == null) {
             reader = getParser().getXMLReader();
+            // while this is supposed to be false by default, some parsers
+            // (in particular Oracle XML parser in oc4j 10.1.3.1) sets the incorrect default value,
+            // so make sure we got the right value.
+            reader.setFeature("http://xml.org/sax/features/namespace-prefixes",false);
             if (this.defaultNamespaceURI != null) {
                 reader = new DefaultNamespaceFilter(this.defaultNamespaceURI,reader);
             }
@@ -1172,14 +1176,14 @@ public class XMLParser extends DefaultHandler {
      */
     protected SAXException createSAXException(String message, Exception e) {
         log.warn("Underlying exception: " + e);
-        e.printStackTrace();
         if (locator != null) {
             String error =
                 "Error at ("
                     + locator.getLineNumber()
                     + ", "
                     + locator.getColumnNumber()
-                    + "): "
+                    + ") of " + locator.getSystemId()
+                    + " : "
                     + message;
             if (e != null) {
                 return new SAXParseException(error, locator, e);

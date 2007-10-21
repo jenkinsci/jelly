@@ -111,9 +111,6 @@ public class ScriptBlock implements Script {
                 if ( text.length() == 0 ) {
                     list.remove(i);
                 }
-                else {
-                    textScript.setText(text);
-                }
             }
         }
     }
