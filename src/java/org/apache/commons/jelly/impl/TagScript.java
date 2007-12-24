@@ -293,11 +293,12 @@ public class TagScript implements Script {
      * @throws JellyTagException
      */
     protected void setContextURLs(JellyContext context) throws JellyTagException {
-        if ((context.getCurrentURL() == null || context.getRootURL() == null) && scriptURL != null)
-        {
-            if (context.getRootURL() == null) context.setRootURL(scriptURL);
-            if (context.getCurrentURL() == null) context.setCurrentURL(scriptURL);
+        if(scriptURL == null)   return;
+
+        if(context.getRootURL()==null) {
+            context.setRootURL(scriptURL);
         }
+        context.setCurrentURL(scriptURL);
     }
 
     // Properties
