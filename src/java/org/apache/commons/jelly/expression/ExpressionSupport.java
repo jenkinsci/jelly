@@ -113,6 +113,9 @@ public abstract class ExpressionSupport implements Expression {
            String[] array = StringUtils.split((String) value, "," );
            array = StringUtils.stripAll( array );
            return new ArrayIterator( array );
+        } else if ( value instanceof Iterable ) {
+            Iterable list = (Iterable) value;
+            return list.iterator();
         } else {
             // XXX: should we return single iterator?
             return new SingletonIterator( value );
