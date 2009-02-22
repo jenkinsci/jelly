@@ -67,6 +67,7 @@ public class DynamicTag extends DynaTagSupport {
         // create new context based on current attributes
         JellyContext newJellyContext = context.newJellyContext(attributes);
         Map attrMap = new HashMap();
+        attrMap.put("ownerTag",this);
         for ( Iterator keyIter = this.attributes.keySet().iterator();
               keyIter.hasNext();) {
             String key = (String) keyIter.next();
@@ -98,5 +99,9 @@ public class DynamicTag extends DynaTagSupport {
 
     public void setTemplate(Script template) {
         this.template = template;
+    }
+
+    public Map getAttribute() {
+        return attributes;
     }
 }
