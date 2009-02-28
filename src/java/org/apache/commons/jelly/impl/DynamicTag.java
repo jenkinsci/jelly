@@ -101,7 +101,7 @@ public class DynamicTag extends DynaTagSupport {
         this.template = template;
     }
 
-    public Map getAttribute() {
+    public Map getAttributes() {
         return attributes;
     }
 }
