@@ -500,9 +500,9 @@ public class JellyContext {
         try {
             script = parser.parse(in);
         } catch (IOException e) {
-            throw new JellyException(JellyContext.BAD_PARSE, e);
+            throw new JellyException(JellyContext.BAD_PARSE+" : "+uri, e);
         } catch (SAXException e) {
-            throw new JellyException(JellyContext.BAD_PARSE, e);
+            throw new JellyException(JellyContext.BAD_PARSE+" : "+uri, e);
         }
 
         return script.compile();
@@ -516,13 +516,13 @@ public class JellyContext {
         XMLParser parser = getXMLParser();
         parser.setContext(this);
 
-        Script script = null;
+        Script script;
         try {
             script = parser.parse(url.toString());
         } catch (IOException e) {
-            throw new JellyException(JellyContext.BAD_PARSE, e);
+            throw new JellyException(JellyContext.BAD_PARSE+" : "+url, e);
         } catch (SAXException e) {
-            throw new JellyException(JellyContext.BAD_PARSE, e);
+            throw new JellyException(JellyContext.BAD_PARSE+" : "+url, e);
         }
 
         return script.compile();
@@ -540,9 +540,9 @@ public class JellyContext {
         try {
             script = parser.parse(source);
         } catch (IOException e) {
-            throw new JellyException(JellyContext.BAD_PARSE, e);
+            throw new JellyException(JellyContext.BAD_PARSE+" : "+source.getSystemId(), e);
         } catch (SAXException e) {
-            throw new JellyException(JellyContext.BAD_PARSE, e);
+            throw new JellyException(JellyContext.BAD_PARSE+" : "+source.getSystemId(), e);
         }
 
         return script.compile();
