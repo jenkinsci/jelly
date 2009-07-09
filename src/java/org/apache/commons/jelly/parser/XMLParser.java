@@ -641,7 +641,7 @@ public class XMLParser extends DefaultHandler {
         }
         catch (Exception e) {
             log.error( "Caught exception: " + e, e );
-            throw new SAXException( "Runtime Exception: " + e, e );
+            throw createSAXException( "Runtime Exception: " + e, e );
         }
     }
 
@@ -698,7 +698,7 @@ public class XMLParser extends DefaultHandler {
             }
         } catch (Exception e) {
             log.error( "Caught exception: " + e, e );
-            throw new SAXException( "Runtime Exception: " + e, e );
+            throw createSAXException( "Runtime Exception: " + e, e );
         }
     }
 
