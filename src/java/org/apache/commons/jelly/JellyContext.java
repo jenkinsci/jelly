@@ -255,6 +255,8 @@ public class JellyContext {
      */
     private Object getSystemProperty(String name) {
         try {
+            if (name==null || name.length()==0)
+                return null; // these two special values will cause System.getProperty to throw an exception
             return System.getProperty(name);
         }
         catch (SecurityException e) {
