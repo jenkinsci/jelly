@@ -37,6 +37,7 @@ import org.apache.commons.jelly.JellyException;
 import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.Tag;
 import org.apache.commons.jelly.TagLibrary;
+import org.apache.commons.jelly.XMLOutput;
 import org.apache.commons.jelly.impl.CompositeTextScriptBlock;
 import org.apache.commons.jelly.impl.ExpressionScript;
 import org.apache.commons.jelly.impl.StaticTag;
@@ -56,6 +57,7 @@ import org.apache.commons.jelly.expression.jexl.JexlExpressionFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.dom4j.io.XMLWriter;
 import org.xml.sax.Attributes;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.helpers.DefaultHandler;
@@ -175,6 +177,22 @@ public class XMLParser extends DefaultHandler {
     private String defaultNamespaceURI = null;
 
     /**
+     * If true, Output from expressions into XML texts are escaped automatically (thus only way to
+     * produce markup from an expression will be to use &lt;j:out>.) This switch is only useful
+     * in conjunction with {@link XMLWriter#setEscapeText(boolean)} set to false, which allows one
+     * to produce markup from expressions in a small number of selected places, while reducing the chance of
+     * the XSS vulnerability by making things safe by default.
+     *
+     * <p>
+     * Because of the way Jelly works, if this switch is on and {@link XMLWriter#setEscapeText(boolean)} is set to true
+     * at the same time, you end up doubly escaping text.
+     *
+     * <p>
+     * If false, no such interpretation is done, which is the traditional behavior of Jelly.
+     */
+    private boolean escapeByDefault = false;
+
+    /**
      * The Log to which logging calls will be made.
      */
     private Log log = LogFactory.getLog(XMLParser.class);
@@ -205,6 +223,10 @@ public class XMLParser extends DefaultHandler {
      */
     public XMLParser(XMLReader reader) {
         this.reader = reader;
+    }
+
+    public void setEscapeByDefault(boolean escapeByDefault) {
+        this.escapeByDefault = escapeByDefault;
     }
 
     /**
@@ -600,41 +622,25 @@ public class XMLParser extends DefaultHandler {
             }
             tagScript = newTagScript;
             tagScriptStack.add(tagScript);
-            if (tagScript != null) {
-                // set the line number details
-                if ( locator != null ) {
-                    tagScript.setLocator(locator);
-                }
-                // sets the file name element names
-                tagScript.setFileName(fileName);
-                tagScript.setElementName(qName);
-                tagScript.setLocalName(localName);
 
-                if (textBuffer.length() > 0) {
-                    addTextScript(textBuffer.toString());
-                    textBuffer.setLength(0);
-                }
-                script.addScript(tagScript);
-                // start a new body
-                scriptStack.push(script);
-                script = new ScriptBlock();
-                tagScript.setTagBody(script);
+            // set the line number details
+            if ( locator != null ) {
+                tagScript.setLocator(locator);
             }
-            else {
-                // XXXX: might wanna handle empty elements later...
-                textBuffer.append("<");
-                textBuffer.append(qName);
-                int size = list.getLength();
-                for (int i = 0; i < size; i++) {
-                    textBuffer.append(" ");
-                    textBuffer.append(list.getQName(i));
-                    textBuffer.append("=");
-                    textBuffer.append("\"");
-                    textBuffer.append(list.getValue(i));
-                    textBuffer.append("\"");
-                }
-                textBuffer.append(">");
+            // sets the file name element names
+            tagScript.setFileName(fileName);
+            tagScript.setElementName(qName);
+            tagScript.setLocalName(localName);
+
+            if (textBuffer.length() > 0) {
+                addTextScript(textBuffer.toString());
+                textBuffer.setLength(0);
             }
+            script.addScript(tagScript);
+            // start a new body
+            scriptStack.push(script);
+            script = new ScriptBlock();
+            tagScript.setTagBody(script);
         }
         catch (SAXException e) {
             throw e;
@@ -676,18 +682,11 @@ public class XMLParser extends DefaultHandler {
         throws SAXException {
         try {
             tagScript = (TagScript) tagScriptStack.remove(tagScriptStack.size() - 1);
-            if (tagScript != null) {
-                if (textBuffer.length() > 0) {
-                    addTextScript(textBuffer.toString());
-                    textBuffer.setLength(0);
-                }
-                script = (ScriptBlock) scriptStack.pop();
+            if (textBuffer.length() > 0) {
+                addTextScript(textBuffer.toString());
+                textBuffer.setLength(0);
             }
-            else {
-                textBuffer.append("</");
-                textBuffer.append(qName);
-                textBuffer.append(">");
-            }
+            script = (ScriptBlock) scriptStack.pop();
 
             // now lets set the parent tag variable
             if ( tagScriptStack.isEmpty() ) {
@@ -775,7 +774,14 @@ public class XMLParser extends DefaultHandler {
      */
     public void processingInstruction(String target, String data)
         throws SAXException {
-        ; // No processing is required
+        if (target.equals("jelly")) {
+            // TODO: parse this properly
+            data = data.replace('"','\'');
+            if (data.contains("escape-by-default='true'"))
+                escapeByDefault = true;
+            if (data.contains("escape-by-default='false'"))
+                escapeByDefault = false;
+        }
     }
 
     /**
@@ -1052,7 +1058,6 @@ public class XMLParser extends DefaultHandler {
         Attributes list)
         throws SAXException {
         try {
-            StaticTag tag = new StaticTag( namespaceURI, localName, qName );
             StaticTagScript script = new StaticTagScript(
                 new TagFactory() {
                     public Tag createTag(String name, Attributes attributes) {
@@ -1144,6 +1149,8 @@ public class XMLParser extends DefaultHandler {
             }
         }
         else {
+            if (escapeByDefault)
+                expression = new EscapingExpression(expression);
             script.addScript(new ExpressionScript(expression));
         }
     }
