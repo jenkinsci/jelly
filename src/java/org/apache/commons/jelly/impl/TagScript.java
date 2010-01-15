@@ -20,6 +20,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -65,7 +66,7 @@ public class TagScript implements Script {
 
 
     /** The attribute expressions that are created */
-    protected Map attributes = new Hashtable();
+    protected Map<String,ExpressionAttribute> attributes = new HashMap<String,ExpressionAttribute>();
 
     /** the optional namespaces Map of prefix -> URI of this single Tag */
     private Map tagNamespacesMap;
@@ -715,19 +716,3 @@ public class TagScript implements Script {
 }
 
 
-class ExpressionAttribute {
-    public ExpressionAttribute(String name, Expression exp) {
-        this(name,"","",exp);
-    }
-    public ExpressionAttribute(String name, String prefix, String nsURI, Expression exp) {
-        this.name = name;
-        this.prefix = prefix;
-        this.nsURI = nsURI;
-        this.exp = exp;
-    }
-
-    String name;
-    String prefix;
-    String nsURI;
-    Expression exp;
-}

@@ -79,8 +79,8 @@
           <debug>true</debug>
           <optimize>false</optimize>
           <showDeprecation>true</showDeprecation>
-          <source>1.3</source>
-          <target>1.3</target>
+          <source>1.5</source>
+          <target>1.5</target>
         </configuration>
       </plugin>
     </plugins>
