@@ -68,6 +68,7 @@ public class StaticTag extends DynaTagSupport {
             throw new JellyTagException(e);
         } finally {
             attributes.clear();
+            context = null;
         }
     }
 
