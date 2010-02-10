@@ -362,9 +362,9 @@ public class JellyContext {
         // XXXX: inherit parent contexts?
         // XXXX: Or at least publish the parent scope
         // XXXX: as a Map in this new variable scope?
-        newVariables.put("parentScope", variables);
         JellyContext answer = createChildContext();
         answer.setVariables(newVariables);
+        answer.setVariable("parentScope", variables);
         return answer;
     }
 
