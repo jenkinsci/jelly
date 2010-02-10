@@ -43,10 +43,19 @@ public class StaticTagScript extends TagScript {
     public StaticTagScript() {
     }
 
+    /**
+     * @deprecated
+     *      The tag name is inferred automatically, so no need to set a tag factory.
+     *      Use the default constructor.
+     */
     public StaticTagScript(TagFactory tagFactory) {
         super(tagFactory);
     }
 
+    @Override
+    protected Tag createTag() throws JellyException {
+        return new StaticTag(getNsUri(),getLocalName(),getElementName());
+    }
 
     // Script interface
     //-------------------------------------------------------------------------

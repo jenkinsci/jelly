@@ -638,6 +638,7 @@ public class XMLParser extends DefaultHandler {
             // sets the file name element names
             tagScript.setFileName(fileName);
             tagScript.setElementName(qName);
+            tagScript.setNsUri(namespaceURI);
             tagScript.setLocalName(localName);
 
             if (textBuffer.length() > 0) {
@@ -1069,13 +1070,7 @@ public class XMLParser extends DefaultHandler {
         Attributes list)
         throws SAXException {
         try {
-            StaticTagScript script = new StaticTagScript(
-                new TagFactory() {
-                    public Tag createTag(String name, Attributes attributes) {
-                        return new StaticTag( namespaceURI, localName, qName );
-                    }
-                }
-            );
+            StaticTagScript script = new StaticTagScript();
             configureTagScript(script);
 
             // now iterate through through the expressions

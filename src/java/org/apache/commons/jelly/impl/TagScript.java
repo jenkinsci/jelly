@@ -84,6 +84,11 @@ public class TagScript implements Script {
     /** the qualified element name which caused the problem */
     private String elementName;
 
+    /**
+     * Namespace URI of this tag.
+     */
+    private String nsUri;
+
     /** the local (non-namespaced) tag name */
     private String localName;
 
@@ -463,6 +468,13 @@ public class TagScript implements Script {
         this.localName = localName;
     }
 
+    public String getNsUri() {
+        return nsUri;
+    }
+
+    public void setNsUri(String nsUri) {
+        this.nsUri = nsUri;
+    }
 
     /**
      * Returns the namespace context of this tag. This is all the prefixes
