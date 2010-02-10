@@ -18,8 +18,18 @@ public class ExpressionAttribute {
         this.exp = exp;
     }
 
+    /**
+     * Local name of this attribute.
+     */
     public String name;
     public String prefix;
     public String nsURI;
     public Expression exp;
+
+    public String qname() {
+        if (nsURI.length()>0)
+            return prefix+':'+name;
+        else
+            return name;
+    }
 }
