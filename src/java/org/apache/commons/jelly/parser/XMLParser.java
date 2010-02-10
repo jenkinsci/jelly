@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Stack;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -37,7 +38,6 @@ import org.apache.commons.jelly.JellyException;
 import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.Tag;
 import org.apache.commons.jelly.TagLibrary;
-import org.apache.commons.jelly.XMLOutput;
 import org.apache.commons.jelly.impl.CompositeTextScriptBlock;
 import org.apache.commons.jelly.impl.ExpressionScript;
 import org.apache.commons.jelly.impl.StaticTag;
@@ -191,6 +191,11 @@ public class XMLParser extends DefaultHandler {
      * If false, no such interpretation is done, which is the traditional behavior of Jelly.
      */
     private boolean escapeByDefault = false;
+
+    /**
+     * Should we trim the whitespace in the given element. Stacked per element.
+     */
+    private Stack<Boolean> preserveWhitespace = new Stack<Boolean>();
 
     /**
      * The Log to which logging calls will be made.
@@ -576,6 +581,9 @@ public class XMLParser extends DefaultHandler {
         tagScript = null;
         scriptStack.clear();
         tagScriptStack.clear();
+
+        preserveWhitespace.clear();
+        preserveWhitespace.push(false);
     }
 
     /**
@@ -641,6 +649,8 @@ public class XMLParser extends DefaultHandler {
             scriptStack.push(script);
             script = new ScriptBlock();
             tagScript.setTagBody(script);
+
+            preserveWhitespace.push(namespaceURI.equals("jelly:core") && localName.equals("whitespace"));
         }
         catch (SAXException e) {
             throw e;
@@ -695,6 +705,7 @@ public class XMLParser extends DefaultHandler {
             else {
                 tagScript = (TagScript) tagScriptStack.get(tagScriptStack.size() - 1);
             }
+            preserveWhitespace.pop();
         } catch (Exception e) {
             log.error( "Caught exception: " + e, e );
             throw createSAXException( "Runtime Exception: " + e, e );
@@ -1114,9 +1125,15 @@ public class XMLParser extends DefaultHandler {
 
     /**
      * Adds the text to the current script block parsing any embedded
-     * expressions inot ExpressionScript objects.
+     * expressions into ExpressionScript objects.
      */
     protected void addTextScript(String text) throws JellyException {
+        if (!preserveWhitespace.peek()) {
+            // trim whitespace
+            text = text.trim();
+            if (text.length()==0)   return;
+        }
+
         Expression expression =
             CompositeExpression.parse(text, getExpressionFactory());
 

@@ -34,7 +34,8 @@ public class WhitespaceTag extends TagSupport {
     private static final Log log = LogFactory.getLog( WhitespaceTag.class );
 
     public WhitespaceTag() {
-        setTrim(false);
+        // this tag is now recognized by the parser
+        // setTrim(false);
     }
 
     // Tag interface

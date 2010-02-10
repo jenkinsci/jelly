@@ -36,11 +36,8 @@ public abstract class TagSupport implements Tag {
 
     /** the body of the tag */
     protected Script body;
+
     /** The current context */
-
-    protected Boolean shouldTrim;
-    protected boolean hasTrimmed;
-
     protected JellyContext context;
 
     /** whether xml text should be escaped */
@@ -111,35 +108,20 @@ public abstract class TagSupport implements Tag {
     /**
      * Sets whether whitespace inside this tag should be trimmed or not.
      * Defaults to true so whitespace is trimmed
+     *
+     * @deprecated
+     *      Trimming is now handled during parsing of the script, like it does in XSLT.
      */
     public void setTrim(boolean shouldTrim) {
-        if ( shouldTrim ) {
-            this.shouldTrim = Boolean.TRUE;
-        }
-        else {
-            this.shouldTrim = Boolean.FALSE;
-        }
     }
 
+    /**
+     *
+     * @deprecated
+     *      Trimming is now handled during parsing of the script, like it does in XSLT.
+     */
     public boolean isTrim() {
-        if ( this.shouldTrim == null ) {
-            Tag parent = getParent();
-            if ( parent == null ) {
-                return true;
-            }
-            else {
-                if ( parent instanceof TagSupport ) {
-                    TagSupport parentSupport = (TagSupport) parent;
-
-                    this.shouldTrim = ( parentSupport.isTrim() ? Boolean.TRUE : Boolean.FALSE );
-                }
-                else {
-                    this.shouldTrim = Boolean.TRUE;
-                }
-            }
-        }
-
-        return this.shouldTrim.booleanValue();
+        return true;
     }
 
     /** @return the parent of this tag */
@@ -154,19 +136,12 @@ public abstract class TagSupport implements Tag {
 
     /** @return the body of the tag */
     public Script getBody() {
-        if (! hasTrimmed) {
-            hasTrimmed = true;
-            if (isTrim()) {
-                trimBody();
-            }
-        }
         return body;
     }
 
     /** Sets the body of the tag */
     public void setBody(Script body) {
         this.body = body;
-        this.hasTrimmed = false;
     }
 
     /** @return the context in which the tag will be run */
@@ -239,6 +214,9 @@ public abstract class TagSupport implements Tag {
     /**
      * Find all text nodes inside the top level of this body and
      * if they are just whitespace then remove them
+     *
+     * @deprecated
+     *      Trimming is now handled during parsing of the script, like it does in XSLT.
      */
     protected void trimBody() {
         TagUtils.trimScript(body);
