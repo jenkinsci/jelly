@@ -1072,22 +1072,7 @@ public class XMLParser extends DefaultHandler {
         try {
             StaticTagScript script = new StaticTagScript();
             configureTagScript(script);
-
-            // now iterate through through the expressions
-            int size = list.getLength();
-            for (int i = 0; i < size; i++) {
-                String attributeValue = list.getValue(i);
-                Expression expression = CompositeExpression.parse(
-                        attributeValue, getExpressionFactory()
-                    );
-                String attrQName = list.getQName(i);
-                int p = attrQName.indexOf(':');
-                String prefix = p>=0 ?
-                        attrQName.substring(0,p):
-                        "";
-                script.addAttribute(list.getLocalName(i),
-                        prefix, list.getURI(i), expression);
-            }
+            configureStaticTagAttributes(script,list);
             return script;
         }
         catch (Exception e) {
@@ -1098,6 +1083,24 @@ public class XMLParser extends DefaultHandler {
                     + localName,
                 e);
             throw createSAXException(e);
+        }
+    }
+
+    protected void configureStaticTagAttributes(TagScript script, Attributes list) throws JellyException {
+        // now iterate through through the expressions
+        int size = list.getLength();
+        for (int i = 0; i < size; i++) {
+            String attributeValue = list.getValue(i);
+            Expression expression = CompositeExpression.parse(
+                    attributeValue, getExpressionFactory()
+                );
+            String attrQName = list.getQName(i);
+            int p = attrQName.indexOf(':');
+            String prefix = p>=0 ?
+                    attrQName.substring(0,p):
+                    "";
+            script.addAttribute(list.getLocalName(i),
+                    prefix, list.getURI(i), expression);
         }
     }
 
