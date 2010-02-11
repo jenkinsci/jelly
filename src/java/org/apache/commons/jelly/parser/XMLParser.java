@@ -1062,6 +1062,10 @@ public class XMLParser extends DefaultHandler {
 
     /**
      * Factory method to create a static Tag that represents some static content.
+     *
+     * <p>
+     * Note that to if you use jelly:define taglib, these tags might turn out to be non-static
+     * during the runtime.
      */
     protected TagScript createStaticTag(
         final String namespaceURI,
