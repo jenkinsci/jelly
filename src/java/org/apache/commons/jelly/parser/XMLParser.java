@@ -193,6 +193,13 @@ public class XMLParser extends DefaultHandler {
     private boolean escapeByDefault = false;
 
     /**
+     * Between the start/end element events, remember which one we saw the last.
+     * This is used to emulate the original whitespace normalization behavior of Jelly,
+     * which is described in more details in HUDSON-5633.
+     */
+    private boolean lastSeenStart = false;
+
+    /**
      * Should we trim the whitespace in the given element. Stacked per element.
      */
     private Stack<Boolean> preserveWhitespace = new Stack<Boolean>();
@@ -642,7 +649,7 @@ public class XMLParser extends DefaultHandler {
             tagScript.setLocalName(localName);
 
             if (textBuffer.length() > 0) {
-                addTextScript(textBuffer.toString());
+                addTextScript(textBuffer.toString(),true);
                 textBuffer.setLength(0);
             }
             script.addScript(tagScript);
@@ -652,6 +659,7 @@ public class XMLParser extends DefaultHandler {
             tagScript.setTagBody(script);
 
             preserveWhitespace.push(namespaceURI.equals("jelly:core") && localName.equals("whitespace"));
+            lastSeenStart = true;
         }
         catch (SAXException e) {
             throw e;
@@ -694,7 +702,7 @@ public class XMLParser extends DefaultHandler {
         try {
             tagScript = (TagScript) tagScriptStack.remove(tagScriptStack.size() - 1);
             if (textBuffer.length() > 0) {
-                addTextScript(textBuffer.toString());
+                addTextScript(textBuffer.toString(),false);
                 textBuffer.setLength(0);
             }
             script = (ScriptBlock) scriptStack.pop();
@@ -707,6 +715,7 @@ public class XMLParser extends DefaultHandler {
                 tagScript = (TagScript) tagScriptStack.get(tagScriptStack.size() - 1);
             }
             preserveWhitespace.pop();
+            lastSeenStart = false;
         } catch (Exception e) {
             log.error( "Caught exception: " + e, e );
             throw createSAXException( "Runtime Exception: " + e, e );
@@ -1128,12 +1137,21 @@ public class XMLParser extends DefaultHandler {
     /**
      * Adds the text to the current script block parsing any embedded
      * expressions into ExpressionScript objects.
+     *
+     * @param start
+     *      If the text precedes a start element. Otherwise the text precedes an end element.
      */
-    protected void addTextScript(String text) throws JellyException {
+    protected void addTextScript(String text, boolean start) throws JellyException {
         if (!preserveWhitespace.peek()) {
-            // trim whitespace
-            text = text.trim();
-            if (text.length()==0)   return;
+            // if we are preserving whitespace, don't touch anything
+            if (lastSeenStart && !start) {
+                // <a>...</a>. whitespace trimmed only if this includes expression
+                if (text.indexOf("${")>=0)
+                    text = text.trim();
+            }
+
+            // text node that consists entirely from whitespace is dropped
+            if (text.trim().length()==0)   return;
         }
 
         Expression expression =
