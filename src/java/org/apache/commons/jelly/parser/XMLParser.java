@@ -36,14 +36,11 @@ import org.apache.commons.collections.ArrayStack;
 import org.apache.commons.jelly.JellyContext;
 import org.apache.commons.jelly.JellyException;
 import org.apache.commons.jelly.Script;
-import org.apache.commons.jelly.Tag;
 import org.apache.commons.jelly.TagLibrary;
 import org.apache.commons.jelly.impl.CompositeTextScriptBlock;
 import org.apache.commons.jelly.impl.ExpressionScript;
-import org.apache.commons.jelly.impl.StaticTag;
 import org.apache.commons.jelly.impl.ScriptBlock;
 import org.apache.commons.jelly.impl.StaticTagScript;
-import org.apache.commons.jelly.impl.TagFactory;
 import org.apache.commons.jelly.impl.TagScript;
 import org.apache.commons.jelly.impl.TextScript;
 import org.apache.commons.jelly.util.ClassLoaderUtils;
@@ -651,7 +648,7 @@ public class XMLParser extends DefaultHandler {
             script = new ScriptBlock();
             tagScript.setTagBody(script);
 
-            preserveWhitespace.push(namespaceURI.equals("jelly:core") && localName.equals("whitespace"));
+            preserveWhitespace.push(isWhitespacePreservingTag(namespaceURI, localName));
         }
         catch (SAXException e) {
             throw e;
@@ -660,6 +657,13 @@ public class XMLParser extends DefaultHandler {
             log.error( "Caught exception: " + e, e );
             throw createSAXException( "Runtime Exception: " + e, e );
         }
+    }
+
+    /**
+     * Is this a whitespace preserving tag?
+     */
+    protected boolean isWhitespacePreservingTag(String namespaceURI, String localName) {
+        return namespaceURI.equals("jelly:core") && (localName.equals("whitespace") || localName.equals("text"));
     }
 
     /**
@@ -1131,9 +1135,9 @@ public class XMLParser extends DefaultHandler {
      */
     protected void addTextScript(String text) throws JellyException {
         if (!preserveWhitespace.peek()) {
-            // trim whitespace
-            text = text.trim();
-            if (text.length()==0)   return;
+            // ala XSLT, we remove whitespace nodes unless they show up in the "preserve whitespace" context.
+            // also just like XSLT, we don't normalize whitespace.
+            if (text.trim().length()==0)   return;
         }
 
         Expression expression =
