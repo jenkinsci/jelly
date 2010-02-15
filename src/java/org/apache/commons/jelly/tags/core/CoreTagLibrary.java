@@ -68,7 +68,6 @@ public class CoreTagLibrary extends TagLibrary {
         registerTag("useBean", UseBeanTag.class);
         registerTag("useList", UseListTag.class);
         registerTag("whitespace", WhitespaceTag.class);
-        registerTag("text", WhitespaceTag.class);   // alias of <whitespace>, just like XSLT
     }
 
 }
