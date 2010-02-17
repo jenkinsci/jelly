@@ -15,6 +15,7 @@
  */
 package org.apache.commons.jelly.expression;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.apache.commons.jelly.JellyContext;
@@ -73,4 +74,33 @@ public interface Expression {
      * actual underlying value object.
      */
     public Object evaluateRecurse(JellyContext context);
+
+    /**
+     * Singleton instance that represents the expression that evaluates to null.
+     */
+    Expression NULL = new Expression() {
+        public String getExpressionText() {
+            return "null";
+        }
+
+        public Object evaluate(JellyContext context) {
+            return null;
+        }
+
+        public String evaluateAsString(JellyContext context) {
+            return null;
+        }
+
+        public boolean evaluateAsBoolean(JellyContext context) {
+            return false;
+        }
+
+        public Iterator evaluateAsIterator(JellyContext context) {
+            return Collections.emptyList().iterator();
+        }
+
+        public Object evaluateRecurse(JellyContext context) {
+            return null;
+        }
+    };
 }

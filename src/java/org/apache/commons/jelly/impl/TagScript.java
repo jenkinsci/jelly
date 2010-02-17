@@ -725,6 +725,18 @@ public class TagScript implements Script {
 
         throw new JellyTagException(e, fileName, elementName, columnNumber, lineNumber);
     }
+
+    /**
+     * Retrieves the expression of the given attribute name.
+     * If no such attribute exists, this method returns {@link Expression#NULL}
+     * so that the caller doesn't have to do the null check.
+     */
+    protected Expression getAttribute(String name) {
+        ExpressionAttribute a = attributes.get(name);
+        if (a==null)    return Expression.NULL;
+        return a.exp;
+    }
+
 }
 
 
