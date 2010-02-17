@@ -219,6 +219,27 @@ public class XMLOutput implements ContentHandler, LexicalHandler {
     //-------------------------------------------------------------------------
 
     /**
+     * Obtains the writer adapter. Writing to this {@link Writer} is equivalent of calling {@link #characters(char[], int, int)} repeatedly.
+     */
+    public Writer asWriter() {
+        return new Writer() {
+            public void write(char[] cbuf, int off, int len) throws IOException {
+                try {
+                    characters(cbuf,off,len);
+                } catch (SAXException e) {
+                    throw (IOException)new IOException().initCause(e);
+                }
+            }
+
+            public void flush() throws IOException {
+            }
+
+            public void close() throws IOException {
+            }
+        };
+    }
+
+    /**
      * Outputs the given String as a piece of valid text in the
      * XML event stream.
      * Any special XML characters should come out properly escaped.
