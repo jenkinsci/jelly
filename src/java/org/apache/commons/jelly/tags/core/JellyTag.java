@@ -18,6 +18,7 @@ package org.apache.commons.jelly.tags.core;
 import org.apache.commons.jelly.JellyTagException;
 import org.apache.commons.jelly.TagSupport;
 import org.apache.commons.jelly.XMLOutput;
+import org.apache.commons.jelly.impl.TagScript;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -26,6 +27,8 @@ import org.apache.commons.logging.LogFactory;
   *
   * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
   * @version $Revision: 155420 $
+ * @deprecated
+ *      Implemented as {@link TagScript} in {@link CoreTagLibrary}
   */
 public class JellyTag extends TagSupport {
 

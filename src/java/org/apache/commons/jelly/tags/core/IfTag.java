@@ -20,11 +20,15 @@ import org.apache.commons.jelly.MissingAttributeException;
 import org.apache.commons.jelly.TagSupport;
 import org.apache.commons.jelly.XMLOutput;
 import org.apache.commons.jelly.expression.Expression;
+import org.apache.commons.jelly.impl.TagScript;
 
 /** A tag which conditionally evaluates its body based on some condition
   *
   * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
   * @version $Revision: 155420 $
+ *
+ * @deprecated
+ *      Implemented as {@link TagScript} in {@link CoreTagLibrary}
   */
 public class IfTag extends TagSupport {
 
