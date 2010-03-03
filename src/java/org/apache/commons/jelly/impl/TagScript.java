@@ -16,6 +16,7 @@
 package org.apache.commons.jelly.impl;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -737,6 +738,14 @@ public class TagScript implements Script {
         return a.exp;
     }
 
+    /**
+     * Evaluates the body and obtains it as a string.
+     */
+    protected String getBodyText(JellyContext context, boolean shouldEscape) throws JellyTagException {
+        StringWriter writer = new StringWriter();
+        getTagBody().run(context,XMLOutput.createXMLOutput(writer, shouldEscape));
+        return writer.toString();
+    }
 }
 
 
