@@ -42,6 +42,7 @@ import org.apache.commons.jelly.NamespaceAwareTag;
 import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.Tag;
 import org.apache.commons.jelly.XMLOutput;
+import org.apache.commons.jelly.XMLOutputFactory;
 import org.apache.commons.jelly.expression.Expression;
 
 import org.apache.commons.logging.Log;
@@ -740,12 +741,15 @@ public class TagScript implements Script {
 
     /**
      * Evaluates the body and obtains it as a string.
+     * Uses standard XMLOutput.createXMLOutput() to generate output unless the JellyContext
+     * contains a variable named org.apache.commons.jelly.XMLOutputFactory which is an object
+     * of that type.
      */
     protected String getBodyText(JellyContext context, boolean shouldEscape) throws JellyTagException {
         StringWriter writer = new StringWriter();
-        getTagBody().run(context,XMLOutput.createXMLOutput(writer, shouldEscape));
+        XMLOutputFactory xof = (XMLOutputFactory)context.getVariable(XMLOutputFactory.class.getName());
+        getTagBody().run(context, xof!=null ? xof.createXMLOutput(writer, shouldEscape)
+                                            : XMLOutput.createXMLOutput(writer, shouldEscape));
         return writer.toString();
     }
 }
-
-
