@@ -1191,9 +1191,13 @@ public class XMLParser extends DefaultHandler {
         }
         else {
             if (escapeByDefault)
-                expression = new EscapingExpression(expression);
+                expression = createEscapingExpression(expression);
             script.addScript(new ExpressionScript(expression));
         }
+    }
+
+    protected Expression createEscapingExpression(Expression expression) {
+        return new EscapingExpression(expression);
     }
 
     protected Expression createConstantExpression(
