@@ -241,6 +241,10 @@ public class XMLParser extends DefaultHandler {
         this.escapeByDefault = escapeByDefault;
     }
 
+    public boolean isEscapeByDefault() {
+        return escapeByDefault;
+    }
+
     /**
      * Parse the content of the specified file using this XMLParser.  Returns
      * the root element from the object stack (if any).
@@ -799,9 +803,9 @@ public class XMLParser extends DefaultHandler {
             // TODO: parse this properly
             data = data.replace('"','\'');
             if (data.contains("escape-by-default='true'"))
-                escapeByDefault = true;
+                setEscapeByDefault(true);
             if (data.contains("escape-by-default='false'"))
-                escapeByDefault = false;
+                setEscapeByDefault(false);
         }
     }
 
