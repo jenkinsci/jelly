@@ -396,6 +396,13 @@ public class TagScript implements Script {
         }
     }
 
+    /**
+     * Base URL from which the script (that uses this tag) is loaded.
+     * Useful fo resolving other resources/scripts that are placed side-by-side.
+     */
+    public URL getScriptURL() {
+        return scriptURL;
+    }
 
     /**
      * @return the element name which caused the problem
