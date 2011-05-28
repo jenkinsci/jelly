@@ -225,24 +225,34 @@ public class JellyContext {
         return answer;
     }
 
-
     /** @return the value of the given variable name */
     public Object getVariable(String name) {
+        Object value = getVariableWithDefaultValue(name,null);
+
+        // ### this is a hack - remove this when we have support for pluggable Scopes
+        if ( value == null ) {
+            value = getSystemProperty(name);
+        }
+
+        return value;
+    }
+
+    /**
+     * Gets the value of the variable, or if it's not defined, return the given default value object.
+     */
+    public Object getVariableWithDefaultValue(String name, Object defaultValue) {
         Object value = variables.get(name);
         boolean definedHere = value != null || variables.containsKey(name);
 
         if (definedHere) return value;
 
-        if ( value == null && isInherit() ) {
+        value = defaultValue;
+
+        if (isInherit()) {
             JellyContext parentContext = getParent();
             if (parentContext != null) {
-                value = parentContext.getVariable( name );
+                value = parentContext.getVariableWithDefaultValue(name, defaultValue);
             }
-        }
-
-        // ### this is a hack - remove this when we have support for pluggable Scopes
-        if ( value == null ) {
-            value = getSystemProperty(name);
         }
 
         return value;
@@ -342,15 +352,7 @@ public class JellyContext {
      * Sets the Map of variables to use
      */
     public void setVariables(Map variables) {
-        // I have seen this fail when the passed Map contains a key, value
-        // pair where the value is null
-        for (Iterator iter = variables.entrySet().iterator(); iter.hasNext();) {
-            Map.Entry element = (Map.Entry) iter.next();
-            if (element.getValue() != null) {
-                this.variables.put(element.getKey(), element.getValue());
-            }
-        }
-        //this.variables.putAll( variables );
+        this.variables.putAll( variables );
     }
 
     /**
