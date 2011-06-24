@@ -207,7 +207,7 @@ public class XMLParser extends DefaultHandler {
     /**
      * The Log to which logging calls will be made.
      */
-    private Log log = LogFactory.getLog(XMLParser.class);
+    private static Log log = LogFactory.getLog(XMLParser.class);
 
     /**
      * Construct a new XMLParser with default properties.
@@ -972,12 +972,16 @@ public class XMLParser extends DefaultHandler {
      * A helper method which loads the static Jelly properties once on startup
      */
     protected synchronized Properties getJellyProperties() {
+        return getStaticJellyProperties();
+    }
+
+    private static synchronized Properties getStaticJellyProperties() {
         if (jellyProperties == null) {
             jellyProperties = new Properties();
 
             InputStream in = null;
             URL url =
-                getClassLoader().getResource("org/apache/commons/jelly/jelly.properties");
+                XMLParser.class.getResource("/org/apache/commons/jelly/jelly.properties");
             if (url != null) {
                 log.debug("Loading Jelly default tag libraries from: " + url);
                 try {
