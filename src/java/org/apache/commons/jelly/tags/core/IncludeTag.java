@@ -105,7 +105,7 @@ public class IncludeTag extends TagSupport {
                 context.runScript(file, output, isExport(), isInherit());
             }
         }
-        catch (JellyException e) {
+        catch (Exception e) {
             throw new JellyTagException("could not include jelly script: " + text + ". Reason: " + e, e);
         }
     }
