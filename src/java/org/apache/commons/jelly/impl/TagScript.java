@@ -211,9 +211,6 @@ public class TagScript implements Script {
     public void run(JellyContext context, XMLOutput output) throws JellyTagException {
         URL rootURL = context.getRootURL();
         URL currentURL = context.getCurrentURL();
-        if ( ! context.isCacheTags() ) {
-            clearTag();
-        }
         try {
             Tag tag = getTag(context);
             if ( tag == null ) {
@@ -316,16 +313,22 @@ public class TagScript implements Script {
      * @return the tag to be evaluated, creating it lazily if required.
      */
     public Tag getTag(JellyContext context) throws JellyException {
-        Thread t = Thread.currentThread();
-        Tag tag = (Tag) threadLocalTagCache.get(t);
-        if ( tag == null ) {
-            tag = createTag();
-            if ( tag != null ) {
-                threadLocalTagCache.put(t,tag);
-                configureTag(tag,context);
+        if (context.isCacheTags()) {
+            Thread t = Thread.currentThread();
+            Tag tag = (Tag) threadLocalTagCache.get(t);
+            if ( tag == null ) {
+                tag = createTag();
+                if ( tag != null) {
+                    threadLocalTagCache.put(t,tag);
+                    configureTag(tag,context);
+                }
             }
+            return tag;
+        } else {
+            Tag tag = createTag();
+            configureTag(tag,context);
+            return tag;
         }
-        return tag;
     }
 
     /**
@@ -566,8 +569,10 @@ public class TagScript implements Script {
      * when a StaticTag is switched with a DynamicTag
      */
     protected void setTag(Tag tag, JellyContext context) {
-        Thread t = Thread.currentThread();
-        threadLocalTagCache.put(t,tag);
+        if (context.isCacheTags()) {
+            Thread t = Thread.currentThread();
+            threadLocalTagCache.put(t,tag);
+        }
     }
 
     /**
