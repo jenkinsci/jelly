@@ -211,11 +211,13 @@ public class TagScript implements Script {
     public void run(JellyContext context, XMLOutput output) throws JellyTagException {
         URL rootURL = context.getRootURL();
         URL currentURL = context.getCurrentURL();
+        final Object oldParent=context.getVariables().get(PARENT_TAG);
         try {
             Tag tag = getTag(context);
             if ( tag == null ) {
                 return;
             }
+            context.getVariables().put(PARENT_TAG,tag);
             tag.setContext(context);
             setContextURLs(context);
 
@@ -288,6 +290,7 @@ public class TagScript implements Script {
         } finally {
             context.setRootURL(rootURL);
             context.setCurrentURL(currentURL);
+            context.getVariables().put(PARENT_TAG,oldParent);
         }
 
     }
@@ -326,7 +329,8 @@ public class TagScript implements Script {
             return tag;
         } else {
             Tag tag = createTag();
-            configureTag(tag,context);
+            if (tag!=null)
+                configureTag(tag,context);
             return tag;
         }
     }
@@ -542,7 +546,8 @@ public class TagScript implements Script {
         }
         Tag parentTag = null;
         if ( parent != null ) {
-            parentTag = parent.getTag(context);
+            // if the parent script isn't a TagScript, parent is null.
+            parentTag = (Tag)context.getVariable(PARENT_TAG);
         }
         tag.setParent( parentTag );
         tag.setBody( tagBody );
@@ -764,4 +769,6 @@ public class TagScript implements Script {
                                             : XMLOutput.createXMLOutput(writer, shouldEscape));
         return writer.toString();
     }
+
+    private static final String PARENT_TAG = TagScript.class.getName()+".parent";
 }

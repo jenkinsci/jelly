@@ -82,6 +82,9 @@ public class StaticTagScript extends TagScript {
 
         URL rootURL = context.getRootURL();
         URL currentURL = context.getCurrentURL();
+        // no parent tag lookup for StaticTagScript.
+        // This makes it impossible for Tag to find its ancestor StaticTags, but
+        // in practice no one needs to look them up so far, so this corner-cutting is OK for now.
         try {
             if ( tag == null ) {
                 return;
