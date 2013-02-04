@@ -20,12 +20,10 @@ import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import org.apache.commons.beanutils.ConvertingWrapDynaBean;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -115,9 +113,7 @@ public class TagScript implements Script {
     /** the url of the script when parsed */
     private URL scriptURL = null;
     
-    /** A synchronized WeakHashMap from the current Thread (key) to a Tag object (value).
-     */
-    private Map threadLocalTagCache = Collections.synchronizedMap(new WeakHashMap());
+    private final ThreadLocal<Tag> threadLocalTagCache = new ThreadLocal<Tag>();
 
     /**
      * @return a new TagScript based on whether
@@ -317,12 +313,11 @@ public class TagScript implements Script {
      */
     public Tag getTag(JellyContext context) throws JellyException {
         if (context.isCacheTags()) {
-            Thread t = Thread.currentThread();
-            Tag tag = (Tag) threadLocalTagCache.get(t);
+            Tag tag = threadLocalTagCache.get();
             if ( tag == null ) {
                 tag = createTag();
                 if ( tag != null) {
-                    threadLocalTagCache.put(t,tag);
+                    threadLocalTagCache.set(tag);
                     configureTag(tag,context);
                 }
             }
@@ -565,8 +560,7 @@ public class TagScript implements Script {
      * Flushes the current cached tag so that it will be created, lazily, next invocation
      */
     protected void clearTag() {
-        Thread t = Thread.currentThread();
-        threadLocalTagCache.put(t,null);
+        threadLocalTagCache.set(null);
     }
 
     /**
@@ -575,8 +569,7 @@ public class TagScript implements Script {
      */
     protected void setTag(Tag tag, JellyContext context) {
         if (context.isCacheTags()) {
-            Thread t = Thread.currentThread();
-            threadLocalTagCache.put(t,tag);
+            threadLocalTagCache.set(tag);
         }
     }
 
