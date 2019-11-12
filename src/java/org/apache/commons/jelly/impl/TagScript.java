@@ -25,11 +25,13 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertingWrapDynaBean;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaProperty;
 
+import org.apache.commons.beanutils.SuppressPropertiesBeanIntrospector;
 import org.apache.commons.jelly.CompilableTag;
 import org.apache.commons.jelly.JellyContext;
 import org.apache.commons.jelly.JellyException;
@@ -205,6 +207,7 @@ public class TagScript implements Script {
 
     /** Evaluates the body of a tag */
     public void run(JellyContext context, XMLOutput output) throws JellyTagException {
+        BeanUtilsBean.getInstance().getPropertyUtils().removeBeanIntrospector(SuppressPropertiesBeanIntrospector.SUPPRESS_CLASS);
         URL rootURL = context.getRootURL();
         URL currentURL = context.getCurrentURL();
         final Object oldParent=context.getVariables().get(PARENT_TAG);
