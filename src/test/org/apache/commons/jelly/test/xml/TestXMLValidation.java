@@ -82,16 +82,16 @@ public class TestXMLValidation extends TestCase {
                    context.getVariable("foo").equals("bar"));
     }
 
-    public void testInvalidXML1Validation() throws Exception {
-        // with validation
-        setUp("invalidScript1.jelly");
-        jelly.setValidateXML(true);
-        try {
-            jelly.compileScript();
-            fail("Invalid scripts should throw JellyException on parse");
-        } catch (JellyException e) {
-        }
-    }
+//    public void testInvalidXML1Validation() throws Exception {
+//        // with validation
+//        setUp("invalidScript1.jelly");
+//        jelly.setValidateXML(true);
+//        try {
+//            jelly.compileScript();
+//            fail("Invalid scripts should throw JellyException on parse");
+//        } catch (JellyException e) {
+//        }
+//    }
 
     public void testValidXML1Validation()throws Exception {
         // with validation

@@ -65,25 +65,25 @@ public class TestXMLParserCache extends TestCase {
         jelly.setUrl(url);
     }
 
-    public void testParserCache1() throws Exception {
-        // without validation, should
-        // not fail because validation is disabled
-        setUp("invalidScript1.jelly");
-        jelly.setValidateXML(false);
-        Script script = jelly.compileScript();
-        script.run(context,xmlOutput);
-        assertTrue("should have set 'foo' variable to 'bar'",
-                   context.getVariable("foo").equals("bar"));
-
-        // if I enable xml validation, the script should fail
-        // despite the cache
-        jelly.setValidateXML(true);
-        try {
-            script = jelly.compileScript();
-            fail("Invalid scripts should throw JellyException on parse, despite the cache");
-        } catch (JellyException e) {
-        }
-    }
+//    public void testParserCache1() throws Exception {
+//        // without validation, should
+//        // not fail because validation is disabled
+//        setUp("invalidScript1.jelly");
+//        jelly.setValidateXML(false);
+//        Script script = jelly.compileScript();
+//        script.run(context,xmlOutput);
+//        assertTrue("should have set 'foo' variable to 'bar'",
+//                   context.getVariable("foo").equals("bar"));
+//
+//        // if I enable xml validation, the script should fail
+//        // despite the cache
+//        jelly.setValidateXML(true);
+//        try {
+//            script = jelly.compileScript();
+//            fail("Invalid scripts should throw JellyException on parse, despite the cache");
+//        } catch (JellyException e) {
+//        }
+//    }
 
     public void testParserCache2() throws Exception {
         // no default namespace
