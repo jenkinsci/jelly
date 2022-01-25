@@ -177,7 +177,7 @@ public class UseBeanTag extends MapTagSupport implements BeanSource {
     /**
      * Sets the properties on the bean. Derived tags could implement some custom
      * type conversion etc.
-     * <p/>
+     * <p>
      * This method ignores all property names in the Set returned by {@link #getIgnorePropertySet()}.
      */
     protected void setBeanProperties(Object bean, Map attributes) throws JellyTagException {
@@ -197,7 +197,7 @@ public class UseBeanTag extends MapTagSupport implements BeanSource {
 
     /**
      * If {@link #isIgnoreUnknownProperties()} returns true, make sure that
-     * every non-ignored ({@see #addIgnoreProperty(String)}) property
+     * every non-ignored (see {@link #addIgnoreProperty(String)}) property
      * matches a writable property on the target bean.
      * @param bean the bean to validate
      * @param attributes the list of properties to validate
@@ -261,7 +261,7 @@ public class UseBeanTag extends MapTagSupport implements BeanSource {
     }
 
     /**
-     * @see {@link #setIgnoreUnknownProperties(boolean)}
+     * @see #setIgnoreUnknownProperties(boolean)
      * @return
      */
     public boolean isIgnoreUnknownProperties() {

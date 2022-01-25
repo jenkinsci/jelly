@@ -37,24 +37,26 @@ import org.xml.sax.SAXException;
 /**
  * @author <a href="mailto:vinayc@apache.org">Vinay Chandran</a>
  *
- * <p><code>Embedded</code> provides easy means to embed JellyEngine <br/>
+ * <p><code>Embedded</code> provides easy means to embed JellyEngine
  * and use Jelly scripts within an application</p>
- * A typical usage:<br/>
- *  <code><br/>
- *     Embedded embedded = new Embedded();<br/>
- *     embedded.setOutputStream(new ByteArrayOutputStream());<br/>
- *     embedded.setVariable("some-var","some-object");<br/>
- *     .....<br/>
- *     embedded.setScript(scriptAsString);<br/>
- *     //or one can do.<br/>
- *     //embedded.setScript(scriptAsInputStream);<br/>
- *     <br/>
- *     boolean bStatus=embedded.execute();<br/>
- *     if(!bStatus) //if error<br/>
- *     {<br/>
- *         String errorMsg=embedded.getErrorMsg();<br/>
- *     }<br/>
- *  </code>  <br/>
+ * <p>A typical usage:
+ * <pre>
+ * <code>
+ *     Embedded embedded = new Embedded();
+ *     embedded.setOutputStream(new ByteArrayOutputStream());
+ *     embedded.setVariable("some-var","some-object");
+ *     .....
+ *     embedded.setScript(scriptAsString);
+ *     //or one can do.
+ *     //embedded.setScript(scriptAsInputStream);
+ *
+ *     boolean bStatus=embedded.execute();
+ *     if(!bStatus) //if error
+ *     {
+ *         String errorMsg=embedded.getErrorMsg();
+ *     }
+ * </code>
+ * </pre>
  *
  * @author <a href="mailto:vinayc@apache.org">Vinay Chandran</a>
  */
@@ -227,8 +229,6 @@ public class Embedded {
 
     /**
      * Execute the jelly script and capture the errors (ifany)within.
-     *
-     * @throws JellyException
      */
     public boolean execute() {
         if (log.isDebugEnabled())
