@@ -87,7 +87,7 @@ public class JellyServlet extends HttpServlet {
     }
 
     /**
-     * @see org.apache.velocity.servlet.VelocityServlet#createContext
+     * see {@code org.apache.velocity.servlet.VelocityServlet#createContext}
      * @param req
      * @param res
      * @return
@@ -111,7 +111,7 @@ public class JellyServlet extends HttpServlet {
      * Example: script=index.jelly or http://localhost:8080/foo/index.jelly.
      * </p>
      *
-     * @see org.apache.velocity.servlet.VelocityServlet#getTemplate
+     * see {@code org.apache.velocity.servlet.VelocityServlet#getTemplate}
      * @param req
      * @return
      * @throws MalformedURLException
@@ -134,7 +134,7 @@ public class JellyServlet extends HttpServlet {
     }
 
     /**
-     * @see org.apache.velocity.servlet.VelocityServlet#mergeTemplate
+     * see {@code org.apache.velocity.servlet.VelocityServlet#mergeTemplate}
      * @param script
      * @param context
      * @param req

@@ -18,7 +18,7 @@ package org.apache.commons.jelly.util;
 import org.xml.sax.Locator;
 
 /**
- * <tt>SAXParseException</tt> with a bug fix to support
+ * {@code SAXParseException} with a bug fix to support
  * exception nesting.
  *
  * @author Kohsuke Kawaguchi

@@ -27,7 +27,7 @@ import org.apache.commons.jelly.JellyTagException;
 public interface CollectionTag {
 
     /**
-     * @return adds an item to the tags collection
+     * adds an item to the tags collection
      */
     public void addItem(Object value) throws JellyTagException;
 }

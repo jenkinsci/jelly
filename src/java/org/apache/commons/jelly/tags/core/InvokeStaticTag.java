@@ -34,15 +34,14 @@ import org.apache.commons.jelly.util.ClassLoaderUtils;
   * arguments using the {@link ArgTag}.
   * </p>
   * <p>
-  *  The following attributes are required:<br />
+  * The following attributes are required:
   * <ul>
   *   <li>var - The variable to assign the return of the method call to</li>
   *   <li>method - The name of the static method to invoke</li>
   *   <li>className - The name of the class containing the static method</li>
   * </ul>
-  * </p>
   *
-  * @author <a href="mailto:robert@bull-enterprises.com>Robert McIntosh</a>
+  * @author <a href="mailto:robert@bull-enterprises.com">Robert McIntosh</a>
   * @version $Revision: 155420 $
   */
 public class InvokeStaticTag extends TagSupport implements ArgTagParent {
