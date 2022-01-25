@@ -126,7 +126,6 @@
     <java.level>8</java.level>
     <gitHubRepo>jenkinsci/jelly</gitHubRepo>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <animal.sniffer.skip>true</animal.sniffer.skip>
     <spotbugs.skip>true</spotbugs.skip>
   </properties>
 
