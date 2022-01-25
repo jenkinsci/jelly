@@ -25,7 +25,7 @@ import org.apache.commons.jelly.util.ClassLoaderUtils;
 
 /**
  * A tag which can retrieve the value of a static field of a given class.
- * The following attributes are required:<br />
+ * The following attributes are required:
  * <ul>
  *   <li>var - The variable to which to assign the resulting value.</li>
  *   <li>field - The name of the static field to retrieve.</li>

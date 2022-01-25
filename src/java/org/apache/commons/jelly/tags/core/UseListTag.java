@@ -29,7 +29,6 @@ import org.apache.commons.jelly.impl.CollectionTag;
  * adds all of the elements identified by the items attribute.
  * The exact implementation of List can be specified via the
  * class attribute
- * </pre>
  *
  * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
  * @version $Revision: 155420 $
