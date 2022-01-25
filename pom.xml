@@ -167,7 +167,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
-      <version>1.0.6</version>
+      <version>1.2</version>
       <optional>true</optional>
     </dependency>
     <dependency>
