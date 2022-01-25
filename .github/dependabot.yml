@@ -1,0 +1,17 @@
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # Provided by the Web container, so aligned with Jetty.
+      - dependency-name: "javax.servlet:javax.servlet-api"
+      # Ignore 1.2.0-atlassian-2
+      - dependency-name: "jaxen:jaxen"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
