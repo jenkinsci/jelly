@@ -88,6 +88,7 @@
               <rules>
                 <requireUpperBoundDeps>
                   <excludes combine.children="append">
+                    <exclude>commons-logging:commons-logging</exclude>
                     <exclude>xml-apis:xml-apis</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
@@ -133,7 +134,7 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.7.0</version>
+      <version>1.9.4</version>
     </dependency>
     <dependency>
       <groupId>commons-collections</groupId>
