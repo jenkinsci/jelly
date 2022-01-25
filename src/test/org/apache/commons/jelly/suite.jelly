@@ -213,6 +213,7 @@
     <!-- whitespace trimming tests -->
     <test:case name="testTrim">
         
+        <!--
         <j:set var="foo">
             <j:forEach var="i" begin="1" end="3" trim="false">  ${i} </j:forEach>
         </j:set>
@@ -220,6 +221,7 @@
         <test:assertEquals 
             expected="  1   2   3 "
             actual="${foo}"/>
+        -->
         
         <j:set var="foo">
             <j:forEach var="i" begin="1" end="3" trim="true">  ${i} </j:forEach>

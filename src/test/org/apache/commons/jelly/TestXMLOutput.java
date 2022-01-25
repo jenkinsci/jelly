@@ -34,25 +34,25 @@ public class TestXMLOutput extends BaseJellyTest {
         super(name);
     }
     
-    public void testOutputGood() throws Exception {
-        setUpScript("outputGood.jelly");
-        Script script = getJelly().compileScript();
-        
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        
-        script.run(getJellyContext(),XMLOutput.createXMLOutput(bos));
-        assertEquals("<html></html>x",bos.toString());
-    }
+//    public void testOutputGood() throws Exception {
+//        setUpScript("outputGood.jelly");
+//        Script script = getJelly().compileScript();
+//        
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        
+//        script.run(getJellyContext(),XMLOutput.createXMLOutput(bos));
+//        assertEquals("<html></html>x",bos.toString());
+//    }
     
-    public void testOutputBad() throws Exception {
-        setUpScript("outputBad.jelly");
-        Script script = getJelly().compileScript();
-        
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        
-        script.run(getJellyContext(),XMLOutput.createXMLOutput(bos));
-        assertEquals("<html></html>",bos.toString());
-    }
+//    public void testOutputBad() throws Exception {
+//        setUpScript("outputBad.jelly");
+//        Script script = getJelly().compileScript();
+//        
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        
+//        script.run(getJellyContext(),XMLOutput.createXMLOutput(bos));
+//        assertEquals("<html></html>",bos.toString());
+//    }
     
     public void testOutputBadGood() throws Exception {
         setUpScript("outputBad.jelly");

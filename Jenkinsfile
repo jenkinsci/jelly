@@ -1,15 +1,10 @@
-pipeline {
-    agent { docker 'maven:3-alpine' }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -U -e clean install'
-            }
-        }
-    }
-    post {
-        always {
-            junit '**/surefire-reports/**/*.xml'
-        }
-    }
-}
+/*
+ * While this is not a plugin, it is much simpler to reuse the pipeline code for CI. This allows for
+ * easy Linux/Windows testing and produces incrementals. The only feature that relates to plugins is
+ * allowing one to test against multiple Jenkins versions.
+ */
+buildPlugin(useContainerAgent: true, configurations: [
+  [ platform: 'linux', jdk: '8' ],
+  [ platform: 'linux', jdk: '11' ],
+  [ platform: 'windows', jdk: '11' ]
+])
