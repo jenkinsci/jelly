@@ -10,7 +10,7 @@
 
   <groupId>org.jenkins-ci</groupId>
   <artifactId>commons-jelly</artifactId>
-  <version>${revision}${changelist}</version>
+  <version>1.1-jenkins-20220625</version>
   <name>commons-jelly</name>
   <description>Jelly is a Java and XML based scripting engine. Jelly combines the best ideas from JSTL, Velocity, DVSL, Ant and Cocoon all together in a simple yet powerful scripting engine.</description>
   <url>https://github.com/jenkinsci/jelly</url>
@@ -127,7 +127,7 @@
   <scm>
     <connection>scm:git:https://github.com/${gitHubRepo}.git</connection>
     <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
-    <tag>${scmTag}</tag>
+    <tag>commons-jelly-1.1-jenkins-20220625</tag>
     <url>https://github.com/${gitHubRepo}</url>
   </scm>
 
