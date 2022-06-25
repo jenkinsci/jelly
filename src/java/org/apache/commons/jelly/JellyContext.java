@@ -471,7 +471,7 @@ public class JellyContext {
             }
             if ( theClass != null ) {
                 try {
-                    Object object = theClass.newInstance();
+                    Object object = theClass.getDeclaredConstructor().newInstance();
                     if (object instanceof TagLibrary) {
                         taglibs.put(namespaceURI, object);
                         return (TagLibrary) object;

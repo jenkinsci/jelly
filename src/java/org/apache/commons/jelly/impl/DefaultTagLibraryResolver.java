@@ -207,7 +207,7 @@ public class DefaultTagLibraryResolver implements TagLibraryResolver {
      */
     protected TagLibrary newInstance(String uri, Class theClass) {
         try {
-            Object object = theClass.newInstance();
+            Object object = theClass.getDeclaredConstructor().newInstance();
             if (object instanceof TagLibrary) {
                 return (TagLibrary) object;
             }
