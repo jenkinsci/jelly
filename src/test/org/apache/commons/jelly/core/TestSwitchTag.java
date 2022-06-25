@@ -115,7 +115,7 @@ public class TestSwitchTag extends BaseJellyTest {
     public void testSwitchWithoutOn() throws Exception {
         setUpScript("testSwitchTag.jelly");
         Script script = getJelly().compileScript();
-        getJellyContext().setVariable("switch.without.on",new Boolean(true));
+        getJellyContext().setVariable("switch.without.on",Boolean.valueOf(true));
         try {
             script.run(getJellyContext(),getXMLOutput());
             fail("Expected MissingAttributeException");
@@ -127,7 +127,7 @@ public class TestSwitchTag extends BaseJellyTest {
     public void testCaseWithoutSwitch() throws Exception {
         setUpScript("testSwitchTag.jelly");
         Script script = getJelly().compileScript();
-        getJellyContext().setVariable("case.without.switch",new Boolean(true));
+        getJellyContext().setVariable("case.without.switch",Boolean.valueOf(true));
         try {
             script.run(getJellyContext(),getXMLOutput());
             fail("Expected JellyException");
@@ -139,7 +139,7 @@ public class TestSwitchTag extends BaseJellyTest {
     public void testDefaultWithoutSwitch() throws Exception {
         setUpScript("testSwitchTag.jelly");
         Script script = getJelly().compileScript();
-        getJellyContext().setVariable("default.without.switch",new Boolean(true));
+        getJellyContext().setVariable("default.without.switch",Boolean.valueOf(true));
         try {
             script.run(getJellyContext(),getXMLOutput());
             fail("Expected JellyException");
@@ -151,7 +151,7 @@ public class TestSwitchTag extends BaseJellyTest {
     public void testCaseWithoutValue() throws Exception {
         setUpScript("testSwitchTag.jelly");
         Script script = getJelly().compileScript();
-        getJellyContext().setVariable("case.without.value",new Boolean(true));
+        getJellyContext().setVariable("case.without.value",Boolean.valueOf(true));
         try {
             script.run(getJellyContext(),getXMLOutput());
             fail("Expected MissingAttributeException");
@@ -163,7 +163,7 @@ public class TestSwitchTag extends BaseJellyTest {
     public void testMultipleDefaults() throws Exception {
         setUpScript("testSwitchTag.jelly");
         Script script = getJelly().compileScript();
-        getJellyContext().setVariable("multiple.defaults",new Boolean(true));
+        getJellyContext().setVariable("multiple.defaults",Boolean.valueOf(true));
         try {
             script.run(getJellyContext(),getXMLOutput());
             fail("Expected JellyException");
@@ -175,7 +175,7 @@ public class TestSwitchTag extends BaseJellyTest {
     public void testCaseAfterDefault() throws Exception {
         setUpScript("testSwitchTag.jelly");
         Script script = getJelly().compileScript();
-        getJellyContext().setVariable("case.after.default",new Boolean(true));
+        getJellyContext().setVariable("case.after.default",Boolean.valueOf(true));
         try {
             script.run(getJellyContext(),getXMLOutput());
             fail("Expected JellyException");

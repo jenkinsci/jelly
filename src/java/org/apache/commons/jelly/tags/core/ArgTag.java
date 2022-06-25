@@ -194,7 +194,7 @@ public class ArgTag extends BaseClassLoaderTag {
             Converter c = new Converter() {
                 public Object convert(Class klass, Object value) {
                     if(value instanceof Number) {
-                        return new Byte(((Number)value).byteValue());
+                        return Byte.valueOf(((Number) value).byteValue());
                     } else {
                         return inner.convert(klass,value);
                     }
@@ -208,7 +208,7 @@ public class ArgTag extends BaseClassLoaderTag {
             Converter c = new Converter() {
                 public Object convert(Class klass, Object value) {
                     if(value instanceof Number) {
-                        return new Short(((Number)value).shortValue());
+                        return Short.valueOf(((Number) value).shortValue());
                     } else {
                         return inner.convert(klass,value);
                     }
@@ -222,7 +222,7 @@ public class ArgTag extends BaseClassLoaderTag {
             Converter c = new Converter() {
                 public Object convert(Class klass, Object value) {
                     if(value instanceof Number) {
-                        return new Integer(((Number)value).intValue());
+                        return Integer.valueOf(((Number) value).intValue());
                     } else {
                         return inner.convert(klass,value);
                     }
@@ -236,7 +236,7 @@ public class ArgTag extends BaseClassLoaderTag {
             Converter c = new Converter() {
                 public Object convert(Class klass, Object value) {
                     if(value instanceof Number) {
-                        return new Long(((Number)value).longValue());
+                        return Long.valueOf(((Number) value).longValue());
                     } else {
                         return inner.convert(klass,value);
                     }
@@ -250,7 +250,7 @@ public class ArgTag extends BaseClassLoaderTag {
             Converter c = new Converter() {
                 public Object convert(Class klass, Object value) {
                     if(value instanceof Number) {
-                        return new Float(((Number)value).floatValue());
+                        return Float.valueOf(((Number) value).floatValue());
                     } else {
                         return inner.convert(klass,value);
                     }
@@ -264,7 +264,7 @@ public class ArgTag extends BaseClassLoaderTag {
             Converter c = new Converter() {
                 public Object convert(Class klass, Object value) {
                     if(value instanceof Number) {
-                        return new Double(((Number)value).doubleValue());
+                        return Double.valueOf(((Number) value).doubleValue());
                     } else {
                         return inner.convert(klass,value);
                     }
