@@ -15,7 +15,7 @@
  */
 package org.apache.commons.jelly.tags.jms;
 
-import javax.jms.JMSException;
+import jakarta.jms.JMSException;
 
 import org.apache.commons.jelly.JellyTagException;
 import org.apache.commons.jelly.TagSupport;

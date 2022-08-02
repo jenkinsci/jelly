@@ -19,7 +19,7 @@ public class AddressHandler extends org.apache.ws.jaxme.examples.misc.address.im
   protected org.apache.ws.jaxme.examples.misc.address.AddressType newResult() throws org.xml.sax.SAXException {
     try {
       return (org.apache.ws.jaxme.examples.misc.address.AddressType) getData().getFactory().getElement(org.apache.ws.jaxme.examples.misc.address.Address.class);
-    } catch (javax.xml.bind.JAXBException _1) {
+    } catch (jakarta.xml.bind.JAXBException _1) {
       throw new org.xml.sax.SAXException(_1);
     }
   }

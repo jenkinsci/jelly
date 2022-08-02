@@ -15,7 +15,7 @@
  */
 package org.apache.commons.jelly.tags.jms;
 
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 
 /**
  * Represents an interface for a Tag which consumes JMS messages.

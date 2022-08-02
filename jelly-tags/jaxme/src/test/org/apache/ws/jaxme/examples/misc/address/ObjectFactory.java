@@ -21,11 +21,11 @@ public class ObjectFactory {
   private java.util.Map properties;
 
 
-  public ObjectFactory() throws javax.xml.bind.JAXBException {
-    jaxbContext = (org.apache.ws.jaxme.impl.JAXBContextImpl) javax.xml.bind.JAXBContext.newInstance("org.apache.ws.jaxme.examples.misc.address");
+  public ObjectFactory() throws jakarta.xml.bind.JAXBException {
+    jaxbContext = (org.apache.ws.jaxme.impl.JAXBContextImpl) jakarta.xml.bind.JAXBContext.newInstance("org.apache.ws.jaxme.examples.misc.address");
   }
 
-  public java.lang.Object newInstance(java.lang.Class pElementInterface) throws javax.xml.bind.JAXBException {
+  public java.lang.Object newInstance(java.lang.Class pElementInterface) throws jakarta.xml.bind.JAXBException {
     return jaxbContext.getElement(pElementInterface);
   }
 
@@ -43,11 +43,11 @@ public class ObjectFactory {
     properties.put(pName, pValue);
   }
 
-  public org.apache.ws.jaxme.examples.misc.address.Address createAddress() throws javax.xml.bind.JAXBException {
+  public org.apache.ws.jaxme.examples.misc.address.Address createAddress() throws jakarta.xml.bind.JAXBException {
     return (org.apache.ws.jaxme.examples.misc.address.Address) newInstance(org.apache.ws.jaxme.examples.misc.address.Address.class);
   }
 
-  public org.apache.ws.jaxme.examples.misc.address.AddressType createAddressType() throws javax.xml.bind.JAXBException {
+  public org.apache.ws.jaxme.examples.misc.address.AddressType createAddressType() throws jakarta.xml.bind.JAXBException {
     return (org.apache.ws.jaxme.examples.misc.address.AddressType) newInstance(org.apache.ws.jaxme.examples.misc.address.AddressType.class);
   }
 

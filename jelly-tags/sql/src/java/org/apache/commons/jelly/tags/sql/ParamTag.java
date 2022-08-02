@@ -15,7 +15,7 @@
  */
 package org.apache.commons.jelly.tags.sql;
 
-import javax.servlet.jsp.jstl.sql.SQLExecutionTag;
+import jakarta.servlet.jsp.jstl.sql.SQLExecutionTag;
 
 import org.apache.commons.jelly.JellyTagException;
 import org.apache.commons.jelly.TagSupport;

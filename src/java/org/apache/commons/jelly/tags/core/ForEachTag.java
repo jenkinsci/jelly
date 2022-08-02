@@ -18,7 +18,7 @@ package org.apache.commons.jelly.tags.core;
 
 import java.util.Iterator;
 
-import javax.servlet.jsp.jstl.core.LoopTagStatus;
+import jakarta.servlet.jsp.jstl.core.LoopTagStatus;
 
 import org.apache.commons.jelly.JellyTagException;
 import org.apache.commons.jelly.MissingAttributeException;

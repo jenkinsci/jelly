@@ -18,9 +18,9 @@ package org.apache.commons.jelly.tags.jms;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.jms.Message;
-import javax.jms.MapMessage;
-import javax.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.MapMessage;
+import jakarta.jms.JMSException;
 
 import org.apache.commons.jelly.JellyTagException;
 

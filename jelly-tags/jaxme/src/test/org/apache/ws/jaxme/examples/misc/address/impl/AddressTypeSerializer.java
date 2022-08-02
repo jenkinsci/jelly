@@ -67,7 +67,7 @@ public class AddressTypeSerializer extends org.apache.ws.jaxme.impl.JMXmlSeriali
     return _1;
   }
 
-  public void init(org.apache.ws.jaxme.impl.JAXBContextImpl pFactory) throws javax.xml.bind.JAXBException {
+  public void init(org.apache.ws.jaxme.impl.JAXBContextImpl pFactory) throws jakarta.xml.bind.JAXBException {
     super.init(pFactory);
     __ser_Name = new org.apache.ws.jaxme.examples.misc.address.impl.AddressTypeSerializer.NameTypeSerializer();
     __ser_Name.init(pFactory);

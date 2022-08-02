@@ -30,7 +30,7 @@ import java.util.Locale;
  * &lt;fmt:message&gt;, &lt;fmt:formatNumber&gt;, &lt;fmt:parseNumber&gt;, &lt;fmt:formatDate&gt;,
  * and &lt;fmt:parseDate&gt; actions as their formatting locale.
  *
- * @see javax.servlet.jsp.jstl.fmt.LocalizationContext
+ * @see jakarta.servlet.jsp.jstl.fmt.LocalizationContext
  *
  * @author <a href="mailto:willievu@yahoo.com">Willie Vu</a>
  * @version 1.1

@@ -15,5 +15,5 @@
 */
 package org.apache.ws.jaxme.examples.misc.address;
 
-public interface Address extends javax.xml.bind.Element , org.apache.ws.jaxme.examples.misc.address.AddressType {
+public interface Address extends jakarta.xml.bind.Element , org.apache.ws.jaxme.examples.misc.address.AddressType {
 }

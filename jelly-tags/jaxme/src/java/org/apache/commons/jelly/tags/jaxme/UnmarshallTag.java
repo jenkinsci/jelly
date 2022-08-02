@@ -18,10 +18,10 @@ package org.apache.commons.jelly.tags.jaxme;
 import java.io.File;
 import java.io.IOException;
 
-import javax.xml.bind.UnmarshallerHandler;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.JAXBContext;
+import jakarta.xml.bind.UnmarshallerHandler;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBContext;
 
 import org.apache.commons.jelly.TagSupport;
 import org.apache.commons.jelly.XMLOutput;

@@ -18,7 +18,7 @@ package org.apache.commons.jelly.tags.sql;
 
 import java.sql.*;
 import java.util.*;
-import javax.servlet.jsp.jstl.sql.Result;
+import jakarta.servlet.jsp.jstl.sql.Result;
 
 /**
  * <p>This class creates a cached version of a <tt>ResultSet</tt>.
@@ -27,7 +27,7 @@ import javax.servlet.jsp.jstl.sql.Result;
  * instance for each column in the row.</p>
  *
  * <p>Note -- this is a private copy for the RI to avoid making the
- * corresponding class in javax.servlet.* public.</p>
+ * corresponding class in jakarta.servlet.* public.</p>
  *
  * @author Hans Bergsten
  * @author Justyna Horwat

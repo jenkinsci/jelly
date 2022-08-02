@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package javax.servlet.jsp.jstl.sql;
+package jakarta.servlet.jsp.jstl.sql;
 
 import java.sql.*;
 import java.util.*;

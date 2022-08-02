@@ -72,7 +72,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
                   __handler.startElement(pNamespaceURI, pLocalName, pQName, pAttr);
                   break;
                 default:
-                  validationEvent(javax.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
+                  validationEvent(jakarta.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
                   break;
               }
             } else if ("Middle".equals(pLocalName)) {
@@ -85,7 +85,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
                   __handler.startElement(pNamespaceURI, pLocalName, pQName, pAttr);
                   break;
                 default:
-                  validationEvent(javax.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
+                  validationEvent(jakarta.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
                   break;
               }
             } else if ("Last".equals(pLocalName)) {
@@ -98,7 +98,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
                   __handler.startElement(pNamespaceURI, pLocalName, pQName, pAttr);
                   break;
                 default:
-                  validationEvent(javax.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
+                  validationEvent(jakarta.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
                   break;
               }
             } else if ("Initials".equals(pLocalName)) {
@@ -110,7 +110,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
                   __handler.startElement(pNamespaceURI, pLocalName, pQName, pAttr);
                   break;
                 default:
-                  validationEvent(javax.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
+                  validationEvent(jakarta.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
                   break;
               }
             }
@@ -225,7 +225,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
   protected org.apache.ws.jaxme.examples.misc.address.AddressType newResult() throws org.xml.sax.SAXException {
     try {
       return (org.apache.ws.jaxme.examples.misc.address.AddressType) getData().getFactory().getElement(org.apache.ws.jaxme.examples.misc.address.AddressType.class);
-    } catch (javax.xml.bind.JAXBException _1) {
+    } catch (jakarta.xml.bind.JAXBException _1) {
       throw new org.xml.sax.SAXException(_1);
     }
   }
@@ -251,7 +251,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
                 __handler.startElement(pNamespaceURI, pLocalName, pQName, pAttr);
                 break;
               default:
-                validationEvent(javax.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
+                validationEvent(jakarta.xml.bind.ValidationEvent.WARNING, "The element " + pQName + " was unexpected at this place.", org.apache.ws.jaxme.ValidationEvents.EVENT_UNEXPECTED_CHILD_STATE);
                 break;
             }
           }
@@ -300,7 +300,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
     }
   }
 
-  public void init(org.apache.ws.jaxme.JMHandler.Data pData) throws javax.xml.bind.JAXBException {
+  public void init(org.apache.ws.jaxme.JMHandler.Data pData) throws jakarta.xml.bind.JAXBException {
     super.init(pData);
     if (__handler_Name != null) {
       __handler_Name.init(pData);
@@ -312,7 +312,7 @@ public class AddressTypeHandler extends org.apache.ws.jaxme.impl.JMHandlerImpl {
       try {
         __handler_Name = new org.apache.ws.jaxme.examples.misc.address.impl.AddressTypeHandler.NameTypeHandler();
         __handler_Name.init(getData());
-      } catch (javax.xml.bind.JAXBException _1) {
+      } catch (jakarta.xml.bind.JAXBException _1) {
         throw new org.xml.sax.SAXException(_1);
       }
     }
