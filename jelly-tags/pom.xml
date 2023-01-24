@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jenkins-ci</groupId>
+    <artifactId>commons-jelly-parent</artifactId>
+    <version>${revision}${changelist}</version>
+  </parent>
+
+  <artifactId>commons-jelly-tags</artifactId>
+  <packaging>pom</packaging>
+  <name>Apache Commons Jelly Tag Libraries Parent</name>
+  <description>Parent pom for tag library projects.</description>
+
+  <modules>
+    <module>ant</module>
+    <module>define</module>
+    <module>dynabean</module>
+    <module>fmt</module>
+    <module>junit</module>
+    <module>log</module>
+    <module>util</module>
+    <module>xml</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>commons-jelly</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+</project>

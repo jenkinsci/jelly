@@ -7,34 +7,21 @@
     <version>${revision}${changelist}</version>
   </parent>
 
-  <groupId>org.jvnet.hudson</groupId>
-  <artifactId>commons-jelly-tags-define</artifactId>
+  <artifactId>commons-jelly-tags-fmt</artifactId>
   <packaging>jar</packaging>
-  <name>commons-jelly-tags-define</name>
-  <description>The Jelly Define Tag Library.</description>
+  <name>commons-jelly-tags-fmt</name>
+  <description>The Jelly JSP Standard Tag Library (JSTL) for I18N and Formatting.</description>
 
   <dependencies>
     <dependency>
       <groupId>org.jenkins-ci</groupId>
-      <artifactId>commons-jelly-tags-dynabean</artifactId>
+      <artifactId>commons-jelly-tags-ant</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci</groupId>
       <artifactId>commons-jelly-tags-junit</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>commons-jelly-tags-log</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>commons-jelly-tags-xml</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
