@@ -28,7 +28,7 @@ import org.xml.sax.helpers.AttributesImpl;
  * Replace namespace is a filter to change the namespace of any
  * elemement attribute passing through it.
  * 
- * @author Diogo Quintela <dquintela@gmail.com>
+ * @author <a href="mailto:dquintela@gmail.com">Diogo Quintela</a>
  */
 public class ReplaceNamespaceTag extends TagSupport {
     private String fromNamespace;

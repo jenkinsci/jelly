@@ -272,7 +272,7 @@ public class UseBeanTag extends MapTagSupport implements BeanSource {
      * If this tag finds an attribute in the XML that's not
      * ignored by {@link #ignoreProperties} and isn't a
      * bean property, should it throw an exception?
-     * @param ignoreUnknownProperties Sets {@link #ignoreUnknownProperties}.
+     * @param ignoreUnknownProps Sets {@link #ignoreUnknownProperties}.
      */
     public void setIgnoreUnknownProperties(boolean ignoreUnknownProps) {
         this.ignoreUnknownProperties = ignoreUnknownProps;

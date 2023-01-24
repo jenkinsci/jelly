@@ -23,7 +23,7 @@ import org.apache.commons.jelly.XMLOutput;
  * using a Jelly script to implement the behaviour of the tag.
  * Parameters can be passed into the new tag using normal XML attribute
  * notations. Inside the body of the tag definition, the attributes can
- * be accessed as normal Jelly variables.</p>
+ * be accessed as normal Jelly variables.
  *
  * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
  * @version $Revision: 155420 $

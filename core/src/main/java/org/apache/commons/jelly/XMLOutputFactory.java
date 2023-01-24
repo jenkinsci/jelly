@@ -13,7 +13,7 @@ import java.io.Writer;
 public interface XMLOutputFactory {
 
     /**
-     * @param Write output to this writer
+     * @param writer Write output to this writer
      * @param escapeText is whether or not text output will be escaped. This must be true
      *   if the underlying output is XML or could be false if the underlying output is textual.
      * @return XMLOutput that will write to given writer

@@ -33,8 +33,6 @@ import java.util.TimeZone;
  *
  * @author <a href="mailto:willievu@yahoo.com">Willie Vu</a>
  * @version $Revision: 155420 $
- *
- * @task decide how to implement setResponseLocale
  */
 public class TimeZoneTag extends TagSupport {
 

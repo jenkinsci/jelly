@@ -28,8 +28,6 @@ import java.util.Locale;
  * tag in JSTL.
  * @author <a href="mailto:willievu@yahoo.com">Willie Vu</a>
  * @version 1.2
- *
- * @task decide how to implement setResponseLocale
  */
 public class SetLocaleTag extends TagSupport {
 
@@ -108,7 +106,7 @@ public class SetLocaleTag extends TagSupport {
     /**
      * Parses the given locale string into its language and (optionally)
      * country components, and returns the corresponding
-     * <tt>java.util.Locale</tt> object.
+     * {@code java.util.Locale} object.
      *
      * If the given locale string is null or empty, the runtime's default
      * locale is returned.
@@ -116,7 +114,7 @@ public class SetLocaleTag extends TagSupport {
      * @param locale the locale string to parse
      * @param variant the variant
      *
-     * @return <tt>java.util.Locale</tt> object corresponding to the given
+     * @return {@code java.util.Locale} object corresponding to the given
      * locale string, or the runtime's default locale if the locale string is
      * null or empty
      *

@@ -83,7 +83,7 @@ public class InvokeStaticTag extends TagSupport implements ArgTagParent {
     /**
      * Sets the name of the method to invoke
      *
-     * @param method The method name
+     * @param methodName The method name
      */
     public void setMethod(String methodName) {
         this.methodName = methodName;

@@ -35,7 +35,6 @@ import java.util.TimeZone;
  * tag in JSTL.
  * @author <a href="mailto:willievu@yahoo.com">Willie Vu</a>
  * @version $Revision: 155420 $
- * @task i18n exception message
  */
 public class FormatDateTag extends TagSupport {
 
@@ -220,7 +219,7 @@ public class FormatDateTag extends TagSupport {
     }
 
     /** Setter for property dataStyle.
-     * @param dataStyle New value of property dataStyle.
+     * @param dateStyle New value of property dataStyle.
      *
      */
     public void setDateStyle(Expression dateStyle) {

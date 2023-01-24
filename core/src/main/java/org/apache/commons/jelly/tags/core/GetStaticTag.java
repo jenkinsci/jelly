@@ -67,7 +67,7 @@ public class GetStaticTag extends TagSupport {
     /**
      * Sets the name of the field to retrieve.
      *
-     * @param method The method name
+     * @param field The field name
      */
 
     public void setField(String field) {
