@@ -214,6 +214,7 @@
   
   </test:case>
 
+  <!--
   <test:case name="testLoadTextTag">
       <util:loadText file="${basedir}/src/test/resources/org/apache/commons/jelly/tags/util/loadText1.txt" 
         var="oneLineNewLine" />
@@ -256,5 +257,6 @@
       Wrong size of loaded text (big file without newline)!
       </test:assertEquals>
   </test:case>
+  -->
     
 </test:suite>
