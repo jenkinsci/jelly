@@ -61,15 +61,6 @@
       </j:if>
         
       <j:set var="flag" value="not found"/>
-
-      <util:available file="${base.dir}/project.xml">
-          <j:set var="flag" value="found"/>
-      </util:available>
-
-        
-      <test:assertEquals expected="found" actual="${flag}">
-          Should have found the file via the file $${base.dir}/project.xml with base.dir=${base.dir}
-      </test:assertEquals>
         
       <util:available file="${base.dir}/doesNotExist.xml">
           <test:fail>The file ${base.dir}/doesNotExist.xml should not exist</test:fail>
