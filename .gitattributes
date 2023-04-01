@@ -1,0 +1,9 @@
+* text=auto
+
+*.java          text
+*.jelly         text
+*.jellytag      text
+*.properties    text
+*.sh            text
+*.txt           text
+*.xml           text
