@@ -17,8 +17,8 @@
   <url>https://github.com/jenkinsci/jelly</url>
   
   <organization>
-    <name>Apache Software Foundation</name>
-    <url>http://jakarta.apache.org</url>
+    <name>Jenkins</name>
+    <url>https://github.com/jenkinsci</url>
   </organization>
 
   <modules>
