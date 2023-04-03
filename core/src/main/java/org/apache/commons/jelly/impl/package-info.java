@@ -1,4 +1,4 @@
-<!--
+/*
   Copyright 2002,2004 The Apache Software Foundation.
   
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,15 +12,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
+*/
 
-<html>
-<head>
-</head>
-<body>
-
-  <p>Core implementation classes for Jelly.
-  </p>
-
-</body>
-</html>
+/**
+ * Core implementation classes for Jelly.
+ */
+package org.apache.commons.jelly.impl;
