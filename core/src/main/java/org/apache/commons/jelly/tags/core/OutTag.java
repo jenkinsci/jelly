@@ -21,24 +21,17 @@ import org.apache.commons.jelly.XMLOutput;
 import org.apache.commons.jelly.expression.Expression;
 import org.xml.sax.SAXException;
 
-/** A tag which evaluates an expression
-  *
-  * tag expr
-  * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
-  * @version $Revision: 155420 $
-  * @deprecated In Jenkins, we use the {@link org.apache.commons.jelly.tags.core.OutTag}.
-  */
-@Deprecated
-public class ExprTag extends TagSupport {
+/**
+ * Cancels the effect of &lt;?jelly escape-by-default='true'?&gt; and allow expressions to produce mark up.
+ */
+public class OutTag extends TagSupport {
 
     /** The expression to evaluate. */
     private Expression value;
 
-    public ExprTag() {
+    public OutTag() {
     }
 
-    // Tag interface
-    //-------------------------------------------------------------------------
     public void doTag(XMLOutput output) throws JellyTagException {
         if (value != null) {
             String text = value.evaluateAsString(context);
@@ -54,11 +47,8 @@ public class ExprTag extends TagSupport {
         }
     }
 
-    // Properties
-    //-------------------------------------------------------------------------
-
     /**
-     * Sets the Jexl expression to evaluate.
+     * The value that should be escaped.
      *
      * @param value required
      */
