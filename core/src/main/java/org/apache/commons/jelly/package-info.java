@@ -1,4 +1,4 @@
-<!--
+/*
   Copyright 2002,2004 The Apache Software Foundation.
   
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +12,12 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
+*/
 
-<html>
-<head>
-</head>
-<body>
-
-  <p>This package contains the main jelly API classes. Developers writing tags should use this package.
-  </p>
-</body>
-</html>
+/**
+ * This package contains the main jelly API classes.
+ * <p>
+ * Developers writing tags should use this package.
+ * </p>
+ */
+package org.apache.commons.jelly;
