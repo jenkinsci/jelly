@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Jelly">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.12.0</version>
+  </skin>
+
+  <body>
+    <menu name="Overview">
+      <item name="Introduction" href="index.html"/>
+      <item name="Tag Reference">
+        <item name="Core" href="commons-jelly/jelly-taglib-ref.html"/>
+        <item name="Ant" href="commons-jelly-tags/commons-jelly-tags-ant/jelly-taglib-ref.html"/>
+        <item name="Define" href="commons-jelly-tags/commons-jelly-tags-define/jelly-taglib-ref.html"/>
+        <item name="DynaBean" href="commons-jelly-tags/commons-jelly-tags-dynabean/jelly-taglib-ref.html"/>
+        <item name="Format" href="commons-jelly-tags/commons-jelly-tags-fmt/jelly-taglib-ref.html"/>
+        <item name="JUnit" href="commons-jelly-tags/commons-jelly-tags-junit/jelly-taglib-ref.html"/>
+        <item name="Log" href="commons-jelly-tags/commons-jelly-tags-log/jelly-taglib-ref.html"/>
+        <item name="Utility" href="commons-jelly-tags/commons-jelly-tags-util/jelly-taglib-ref.html"/>
+        <item name="XML" href="commons-jelly-tags/commons-jelly-tags-xml/jelly-taglib-ref.html"/>
+      </item>
+    </menu>
+    <menu ref="reports" inherit="bottom"/>
+  </body>
+
+  <custom>
+    <fluidoSkin>
+      <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+      <gitHub>
+        <projectId>jenkinsci/jelly</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>orange</ribbonColor>
+      </gitHub>
+    </fluidoSkin>
+  </custom>
+</project>
