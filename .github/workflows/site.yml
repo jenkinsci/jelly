@@ -36,7 +36,6 @@ jobs:
         run: |
           mkdir /tmp/site
           mvn -B -V -e -ntp -Pquick-build clean verify site site:stage -DstagingDirectory=/tmp/site
-    - run:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
