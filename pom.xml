@@ -46,6 +46,7 @@
     <gitHubRepo>jenkinsci/jelly</gitHubRepo>
     <ant.version>1.10.13</ant.version>
     <spotbugs.skip>true</spotbugs.skip>
+    <maven.site.deploy.skip>true</maven.site.deploy.skip>
   </properties>
 
   <dependencyManagement>
