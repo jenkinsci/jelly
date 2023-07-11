@@ -9,7 +9,7 @@
   <body>
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
-      <item name="Tag Reference" href="plugin-info.html">
+      <item name="Tag Reference">
         <item name="Core" href="commons-jelly/jelly-taglib-ref.html"/>
         <item name="Ant" href="commons-jelly-tags/commons-jelly-tags-ant/jelly-taglib-ref.html"/>
         <item name="Define" href="commons-jelly-tags/commons-jelly-tags-define/jelly-taglib-ref.html"/>
