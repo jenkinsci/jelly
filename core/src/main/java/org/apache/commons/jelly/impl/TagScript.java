@@ -64,6 +64,8 @@ public class TagScript implements Script {
     /** The Log to which logging calls will be made. */
     private static final Log log = LogFactory.getLog(TagScript.class);
 
+    /** Used to serialize access to {@link org.apache.commons.beanutils.WrapDynaClass#CLASSLOADER_CACHE}, which is not thread-safe */
+    private static final Object lock = new Object();
 
     /** The attribute expressions that are created */
     protected Map<String,ExpressionAttribute> attributes = new HashMap<String,ExpressionAttribute>();
@@ -239,7 +241,11 @@ public class TagScript implements Script {
             }
             else {
                 // treat the tag as a bean
-                DynaBean dynaBean = new ConvertingWrapDynaBean( tag );
+                DynaBean dynaBean;
+                // Work around BEANUTILS-509
+                synchronized (lock) {
+                    dynaBean = new ConvertingWrapDynaBean(tag);
+                }
                 for (Iterator iter = attributes.entrySet().iterator(); iter.hasNext();) {
                     Map.Entry entry = (Map.Entry) iter.next();
                     String name = (String) entry.getKey();
