@@ -64,7 +64,7 @@ public class TagScript implements Script {
     /** The Log to which logging calls will be made. */
     private static final Log log = LogFactory.getLog(TagScript.class);
 
-    /** Used to serialize access to org.apache.commons.beanutils.WrapDynaClass#CLASSLOADER_CACHE, which is not thread-safe */
+    /** Used to serialize access to {@link org.apache.commons.beanutils.WrapDynaClass#CLASSLOADER_CACHE}, which is not thread-safe */
     private static final Object lock = new Object();
 
     /** The attribute expressions that are created */
