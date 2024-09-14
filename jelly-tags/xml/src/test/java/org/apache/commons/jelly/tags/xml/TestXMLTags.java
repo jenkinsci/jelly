@@ -164,7 +164,7 @@ public class TestXMLTags extends TestCase {
             evaluteScriptAsText(testBaseDir + "/attributeNameSpaceDuplicatedNS.jelly");
             Assert.fail("We should have bailed out with an JellyException");
         } catch (JellyException jex) {
-            assertTrue(jex.getReason().startsWith("org.xml.sax.SAXException: Cannot set same prefix to diferent URI in same node"));
+            assertThat(jex.getReason(), startsWith("org.xml.sax.SAXException: Cannot set same prefix to diferent URI in same node"));
         }
     }
 
