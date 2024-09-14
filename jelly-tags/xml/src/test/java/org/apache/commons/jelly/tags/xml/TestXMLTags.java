@@ -43,6 +43,11 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Node;
 import org.dom4j.io.SAXContentHandler;
 import org.dom4j.io.XMLWriter;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
+
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /** Tests the parser, the engine and the XML tags
   *
@@ -110,7 +115,7 @@ public class TestXMLTags extends TestCase {
             evaluteScriptAsText(testBaseDir + "/elementWithNameSpaceError.jelly");
             Assert.fail("We should have bailed out with an JellyException");
         } catch (JellyException jex) {
-            assertTrue(jex.getReason().startsWith("Cannot set same prefix to diferent URI in same node"));
+            assertThat(jex.getReason(), startsWith("org.xml.sax.SAXException: Cannot set same prefix to diferent URI in same node"));
         }
     }
 
@@ -159,7 +164,7 @@ public class TestXMLTags extends TestCase {
             evaluteScriptAsText(testBaseDir + "/attributeNameSpaceDuplicatedNS.jelly");
             Assert.fail("We should have bailed out with an JellyException");
         } catch (JellyException jex) {
-            assertTrue(jex.getReason().startsWith("Cannot set same prefix to diferent URI in same node"));
+            assertTrue(jex.getReason().startsWith("org.xml.sax.SAXException: Cannot set same prefix to diferent URI in same node"));
         }
     }
 
