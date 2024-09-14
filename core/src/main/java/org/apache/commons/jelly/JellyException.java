@@ -16,9 +16,6 @@
 
 package org.apache.commons.jelly;
 
-import java.io.PrintStream;
-import java.io.PrintWriter;
-
 /**
  * <p><code>JellyException</code> is the root of all Jelly exceptions.</p>
  *
@@ -143,45 +140,5 @@ public class JellyException extends Exception implements LocationAware {
 
     public String getReason() {
         return super.getMessage();
-    }
-
-    // #### overload the printStackTrace methods...
-    public void printStackTrace(PrintWriter s) {
-        synchronized (s) {
-            super.printStackTrace(s);
-            if  (getCause() != null && !isChainingSupported()) {
-                s.println("Root cause");
-                getCause().printStackTrace(s);
-            }
-        }
-    }
-
-    public void printStackTrace(PrintStream s) {
-        synchronized (s) {
-            super.printStackTrace(s);
-            if  (getCause() != null && !isChainingSupported()) {
-                s.println("Root cause");
-                getCause().printStackTrace(s);
-            }
-        }
-    }
-
-    public void printStackTrace() {
-        super.printStackTrace();
-        if (getCause() != null && !isChainingSupported()) {
-            System.out.println("Root cause");
-            getCause().printStackTrace();
-        }
-    }
-
-    private boolean isChainingSupported() {
-        try {
-            Throwable.class.getMethod("getCause", new Class[0]);
-            return true;
-        } catch (NoSuchMethodException e) {
-            return false;
-        } catch (SecurityException e) {
-            return false;
-        }
     }
 }
