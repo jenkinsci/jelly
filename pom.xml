@@ -121,7 +121,7 @@
         <groupId>io.jenkins.tools.maven</groupId>
         <artifactId>jellydoc-maven-plugin</artifactId>
         <!-- TODO manage in parent POM -->
-        <version>185.va_049cf95efc1</version>
+        <version>190.ve454d5e0ced2</version>
       </plugin>
     </plugins>
   </reporting>
