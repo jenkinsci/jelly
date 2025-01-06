@@ -10,7 +10,7 @@
 
   <groupId>org.jenkins-ci</groupId>
   <artifactId>commons-jelly-parent</artifactId>
-  <version>1.1-jenkins-20241116</version>
+  <version>${revision}${changelist}</version>
   <packaging>pom</packaging>
   <name>Apache Commons Jelly Parent</name>
   <description>Parent pom for Apache Commons Jelly</description>
@@ -29,7 +29,7 @@
   <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
     <connection>scm:git:https://github.com/${gitHubRepo}.git</connection>
     <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
-    <tag>commons-jelly-1.1-jenkins-20250106</tag>
+    <tag>${scmTag}</tag>
     <url>https://github.com/${gitHubRepo}</url>
   </scm>
 
@@ -41,7 +41,7 @@
   </distributionManagement>
 
   <properties>
-    <revision>1.1-jenkins-20241116</revision>
+    <revision>1.1-jenkins-20250107</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/jelly</gitHubRepo>
     <ant.version>1.10.15</ant.version>
