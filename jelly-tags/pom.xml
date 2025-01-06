@@ -4,10 +4,11 @@
   <parent>
     <groupId>org.jenkins-ci</groupId>
     <artifactId>commons-jelly-parent</artifactId>
-    <version>${revision}${changelist}</version>
+    <version>1.1-jenkins-20241116</version>
   </parent>
 
   <artifactId>commons-jelly-tags</artifactId>
+  <version>1.1-jenkins-20250106</version>
   <packaging>pom</packaging>
   <name>Apache Commons Jelly Tag Libraries Parent</name>
   <description>Parent pom for tag library projects.</description>
