@@ -29,7 +29,7 @@
   <description>The Jelly XML Tag Library.</description>
 
   <properties>
-    <xalan.version>2.7.3</xalan.version>
+    <xalan.version>2.7.3-atlassian-hosted</xalan.version>
   </properties>
 
   <dependencies>
