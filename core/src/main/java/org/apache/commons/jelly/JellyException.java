@@ -16,9 +16,6 @@
 
 package org.apache.commons.jelly;
 
-import java.io.PrintStream;
-import java.io.PrintWriter;
-
 /**
  * <p><code>JellyException</code> is the root of all Jelly exceptions.</p>
  *
@@ -27,9 +24,6 @@ import java.io.PrintWriter;
  */
 
 public class JellyException extends Exception implements LocationAware {
-
-    /** the underlying cause of the exception */
-    private Throwable cause;
 
     /** the Jelly file which caused the problem */
     private String fileName;
@@ -51,13 +45,11 @@ public class JellyException extends Exception implements LocationAware {
     }
 
     public JellyException(String message, Throwable cause) {
-        super(message);
-        this.cause = cause;
+        super(message, cause);
     }
 
     public JellyException(Throwable cause) {
-        super(cause.getLocalizedMessage());
-        this.cause = cause;
+        super(cause);
     }
 
     public JellyException(Throwable cause, String fileName, String elementName, int columnNumber, int lineNumber) {
@@ -65,8 +57,7 @@ public class JellyException extends Exception implements LocationAware {
     }
 
     public JellyException(String reason, Throwable cause, String fileName, String elementName, int columnNumber, int lineNumber) {
-        super( (reason==null?cause.getClass().getName():reason) );
-        this.cause = cause;
+        super( (reason==null?cause.getClass().getName():reason), cause);
         this.fileName = fileName;
         this.elementName = elementName;
         this.columnNumber = columnNumber;
@@ -80,11 +71,6 @@ public class JellyException extends Exception implements LocationAware {
         this.columnNumber = columnNumber;
         this.lineNumber = lineNumber;
     }
-
-    public Throwable getCause() {
-        return cause;
-    }
-
 
     /**
      * @return the line number of the tag 
@@ -154,45 +140,5 @@ public class JellyException extends Exception implements LocationAware {
 
     public String getReason() {
         return super.getMessage();
-    }
-
-    // #### overload the printStackTrace methods...
-    public void printStackTrace(PrintWriter s) {
-        synchronized (s) {
-            super.printStackTrace(s);
-            if  (cause != null && !isChainingSupported()) {
-                s.println("Root cause");
-                cause.printStackTrace(s);
-            }
-        }
-    }
-
-    public void printStackTrace(PrintStream s) {
-        synchronized (s) {
-            super.printStackTrace(s);
-            if  (cause != null && !isChainingSupported()) {
-                s.println("Root cause");
-                cause.printStackTrace(s);
-            }
-        }
-    }
-
-    public void printStackTrace() {
-        super.printStackTrace();
-        if (cause != null && !isChainingSupported()) {
-            System.out.println("Root cause");
-            cause.printStackTrace();
-        }
-    }
-
-    private boolean isChainingSupported() {
-        try {
-            Throwable.class.getMethod("getCause", new Class[0]);
-            return true;
-        } catch (NoSuchMethodException e) {
-            return false;
-        } catch (SecurityException e) {
-            return false;
-        }
     }
 }
