@@ -4,12 +4,12 @@
   <parent>
     <groupId>org.jenkins-ci</groupId>
     <artifactId>commons-jelly-parent</artifactId>
-    <version>1.1-jenkins-20250731</version>
+    <version>${revision}${changelist}</version>
   </parent>
 
   <groupId>org.jenkins-ci</groupId>
   <artifactId>commons-jelly</artifactId>
-  <version>1.1-jenkins-20250731</version>
+  <version>${revision}${changelist}</version>
   <packaging>jar</packaging>
   <name>Apache Commons Jelly Core</name>
   <description>Apache Commons Jelly is a Java and XML based scripting engine. Jelly combines the best ideas from JSTL, Velocity, DVSL, Ant and Cocoon all together in a simple yet powerful scripting engine.</description>
