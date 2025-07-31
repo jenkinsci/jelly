@@ -15,6 +15,7 @@
  */
 package org.apache.commons.jelly.expression;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -27,7 +28,6 @@ import org.apache.commons.collections.iterators.EnumerationIterator;
 import org.apache.commons.collections.iterators.SingletonIterator;
 
 import org.apache.commons.jelly.JellyContext;
-import org.apache.commons.lang.StringUtils;
 
 /** <p><code>ExpressionSupport</code>
   * an abstract base class for Expression implementations
@@ -110,9 +110,17 @@ public abstract class ExpressionSupport implements Expression {
           Collection collection = (Collection) value;
           return collection.iterator();
         } else if ( value instanceof String ) {
-           String[] array = StringUtils.split((String) value, "," );
-           array = StringUtils.stripAll( array );
-           return new ArrayIterator( array );
+           String str = (String) value;
+           if (str.isEmpty()) {
+               return EMPTY_ITERATOR;
+           }
+           List<String> list = new ArrayList<>();
+           for (String token : str.split(",")) {
+               if (!token.isEmpty()) {
+                   list.add(token.trim());
+               }
+           }
+           return new ArrayIterator(list.toArray(new String[0]));
         } else if ( value instanceof Iterable ) {
             Iterable list = (Iterable) value;
             return list.iterator();

@@ -24,8 +24,6 @@ import org.apache.commons.jelly.expression.Expression;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.apache.commons.lang.StringUtils;
-
 import org.xml.sax.SAXException;
 
 /**
@@ -86,7 +84,7 @@ public class ReplaceTag extends TagSupport {
 
         // set the result in the context, or output it
         if (answer != null) {
-            String stringAnswer = StringUtils.replace(answer.toString(), oldString, newString);
+            String stringAnswer = answer.toString().replace(oldString, newString);
             if ( var != null ) {
                 context.setVariable(var, stringAnswer);
             } else {
