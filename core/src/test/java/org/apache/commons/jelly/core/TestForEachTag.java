@@ -19,7 +19,6 @@ import junit.framework.TestSuite;
 
 import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.test.BaseJellyTest;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * @author <a href="mailto:benanderson@benanderson.us">Ben Anderson</a>
@@ -52,8 +51,8 @@ public class TestForEachTag extends BaseJellyTest
         String resultOrdered = 
                 (String) getJellyContext().getVariable("result.ordered");
         System.err.println("raw result is '" + resultOrdered + "'");
-        resultOrdered = StringUtils.replace(resultOrdered, " ", "");
-        resultOrdered = StringUtils.replace(resultOrdered, "\n", "");
+        resultOrdered = resultOrdered.replace(" ", "");
+        resultOrdered = resultOrdered.replace("\n", "");
 
         assertEquals("result.ordered", 
                        "FIRST_262_121/MIDDLE_242/LAST_363/",
@@ -71,8 +70,8 @@ public class TestForEachTag extends BaseJellyTest
         String resultOrdered = 
                 (String) getJellyContext().getVariable("result.ordered");
         System.err.println("raw result is '" + resultOrdered + "'");
-        resultOrdered = StringUtils.replace(resultOrdered, " ", "");
-        resultOrdered = StringUtils.replace(resultOrdered, "\n", "");
+        resultOrdered = resultOrdered.replace(" ", "");
+        resultOrdered = resultOrdered.replace("\n", "");
 
         assertEquals("result.ordered", 
                        "FIRST_262_122/MIDDLE_244/LAST_366/",
