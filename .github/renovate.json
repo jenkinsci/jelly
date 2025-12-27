@@ -16,16 +16,18 @@
       "datasourceTemplate": "maven"
     }
   ],
-  "ignore": [
+  "packageRules": [
     {
-      "dependency-name": "jakarta.servlet:jakarta.servlet-api"
-    },
-    {
-      "dependency-name": "jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api"
-    },
-    {
-      "dependency-name": "jaxen:jaxen",
-      "comment": "Ignore 1.2.0-atlassian-2"
+      "description": "Ignore 1.2.0-atlassian-2",
+      "matchManagers": [
+        "maven"
+      ],
+      "enabled": false,
+      "matchPackageNames": [
+        "jakarta.servlet:jakarta.servlet-api",
+        "jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api",
+        "jaxen:jaxen"
+      ]
     }
   ]
 }
