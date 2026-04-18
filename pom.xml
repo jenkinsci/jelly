@@ -41,7 +41,7 @@
   </distributionManagement>
 
   <properties>
-    <revision>1.1-jenkins-20250732</revision>
+    <revision>1.1-jenkins-20260418</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/jelly</gitHubRepo>
     <ant.version>1.10.17</ant.version>
