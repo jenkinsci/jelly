@@ -41,7 +41,7 @@
   </distributionManagement>
 
   <properties>
-    <revision>1.1-jenkins-20250732</revision>
+    <revision>1.1-jenkins-20260418</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/jelly</gitHubRepo>
     <ant.version>1.10.17</ant.version>
@@ -64,7 +64,7 @@
       <dependency>
         <groupId>jaxen</groupId>
         <artifactId>jaxen</artifactId>
-        <version>2.0.0</version>
+        <version>2.0.1</version>
       </dependency>
       <dependency>
         <groupId>org.apache.ant</groupId>
