@@ -26,8 +26,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <scm>
-    <tag>commons-jelly-1.1-jenkins-20260418</tag>
-  </scm>
 </project>
