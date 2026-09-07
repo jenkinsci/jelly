@@ -44,7 +44,7 @@
     <revision>1.1-jenkins-20260419</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/jelly</gitHubRepo>
-    <ant.version>1.10.17</ant.version>
+    <ant.version>1.10.18</ant.version>
     <spotbugs.skip>true</spotbugs.skip>
     <maven.site.deploy.skip>true</maven.site.deploy.skip>
   </properties>
