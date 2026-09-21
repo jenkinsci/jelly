@@ -45,7 +45,7 @@ public class CoreTagLibrary extends TagLibrary {
         registerTag("jelly", JellyTag.class);
 
         // core tags
-        registerTag("out", ExprTag.class);
+        registerTag("out", OutTag.class);
         registerTag("catch", CatchTag.class);
         registerTag("forEach", ForEachTag.class);
         registerTag("set", SetTag.class);
