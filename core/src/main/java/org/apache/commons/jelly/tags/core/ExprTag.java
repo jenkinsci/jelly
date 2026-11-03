@@ -23,10 +23,12 @@ import org.xml.sax.SAXException;
 
 /** A tag which evaluates an expression
   *
-  * @tag out
+  * tag expr
   * @author <a href="mailto:jstrachan@apache.org">James Strachan</a>
   * @version $Revision: 155420 $
+  * @deprecated In Jenkins, we use the {@link org.apache.commons.jelly.tags.core.OutTag}.
   */
+@Deprecated
 public class ExprTag extends TagSupport {
 
     /** The expression to evaluate. */
@@ -58,7 +60,7 @@ public class ExprTag extends TagSupport {
     /**
      * Sets the Jexl expression to evaluate.
      *
-     * @required true
+     * @param value required
      */
     public void setValue(Expression value) {
         this.value = value;
